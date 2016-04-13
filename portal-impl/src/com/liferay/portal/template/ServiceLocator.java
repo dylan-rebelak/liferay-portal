@@ -19,6 +19,7 @@ import com.liferay.portal.kernel.bean.PortalBeanLocatorUtil;
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.registry.RegistryUtil;
 
 /**
  * @author Brian Wing Shun Chan
@@ -27,6 +28,10 @@ public class ServiceLocator {
 
 	public static ServiceLocator getInstance() {
 		return _instance;
+	}
+
+	public Object findOSGiService(String serviceName) {
+		return RegistryUtil.getRegistry().getService(serviceName);
 	}
 
 	public Object findService(String serviceName) {
