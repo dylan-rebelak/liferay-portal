@@ -16,11 +16,12 @@ package com.liferay.hello.soy.web.portlet;
 
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
-import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.portlet.bridge.soy.SoyPortlet;
 
 import java.io.IOException;
+
+import java.util.Objects;
 
 import javax.portlet.Portlet;
 import javax.portlet.PortletException;
@@ -39,6 +40,7 @@ import org.osgi.service.component.annotations.Component;
 		"com.liferay.portlet.add-default-resource=true",
 		"com.liferay.portlet.application-type=full-page-application",
 		"com.liferay.portlet.application-type=widget",
+		"com.liferay.portlet.display-category=category.sample",
 		"com.liferay.portlet.layout-cacheable=true",
 		"com.liferay.portlet.preferences-owned-by-group=true",
 		"com.liferay.portlet.private-request-attributes=false",
@@ -73,7 +75,7 @@ public class HelloSoyPortlet extends SoyPortlet {
 
 		String path = getPath(renderRequest, renderResponse);
 
-		if (Validator.equals(path, "hello_soy_edit")) {
+		if (Objects.equals(path, "hello_soy_edit")) {
 			portletURL.setParameter("mvcPath", "hello_soy_view");
 		}
 		else {
