@@ -252,7 +252,9 @@
 
 		<execute macro="Navigator#gotoStagedView" />
 
-		<execute macro="Staging#gotoPublishToLive" />
+		<execute macro="ProductMenu#gotoSitesPublishing">
+			<var name="portlet" value="Staging" />
+		</execute>
 
 		<execute macro="Staging#viewPublishTemplate">
 			<var name="publishTemplateDescription" value="Publish Template Description" />
@@ -566,6 +568,97 @@
 		</execute>
 	</command>
 
+	<command name="PublishRenamedTags" priority="4">
+		<execute macro="Navigator#gotoSitePage">
+			<var name="pageName" value="Staging Test Page" />
+			<var name="siteName" value="Site Name" />
+		</execute>
+
+		<execute macro="Portlet#addPG">
+			<var name="portletName" value="Web Content Display" />
+		</execute>
+
+		<execute macro="WebContent#addPGViaWCD">
+			<var name="webContentContent" value="WebContent Content" />
+			<var name="webContentTitle" value="WebContent Title" />
+		</execute>
+
+		<execute macro="Navigator#gotoSitePage">
+			<var name="pageName" value="Staging Test Page" />
+			<var name="siteName" value="Site Name" />
+		</execute>
+
+		<execute macro="WebContentNavigator#gotoEditPGViaWCD" />
+
+		<execute macro="WebContent#addTagPGViaWCD">
+			<var name="tagName" value="tag name" />
+		</execute>
+
+		<execute macro="ProductMenu#gotoSitesPublishing">
+			<var name="portlet" value="Staging" />
+		</execute>
+
+		<execute macro="Staging#activateStagingCP">
+			<var name="siteName" value="Site Name" />
+		</execute>
+
+		<execute macro="Navigator#gotoStagedSitePage">
+			<var name="pageName" value="Staging Test Page" />
+			<var name="siteName" value="Site Name" />
+		</execute>
+
+		<execute macro="Staging#gotoPublishToLive" />
+
+		<execute macro="Staging#publishToLive" />
+
+		<execute macro="Navigator#openSiteURL">
+			<var name="siteName" value="Site Name" />
+		</execute>
+
+		<execute macro="ProductMenu#gotoSitesContent">
+			<var name="portlet" value="Tags" />
+		</execute>
+
+		<execute macro="Tag#viewCP">
+			<var name="tagName" value="tag name" />
+		</execute>
+
+		<execute macro="Navigator#gotoStagedSitePage">
+			<var name="pageName" value="Staging Test Page" />
+			<var name="siteName" value="Site Name" />
+		</execute>
+
+		<execute macro="ProductMenu#gotoSitesContent">
+			<var name="portlet" value="Tags" />
+		</execute>
+
+		<execute macro="Tag#editCP">
+			<var name="tagName" value="tag name" />
+			<var name="tagNameEdit" value="tag name edit" />
+		</execute>
+
+		<execute macro="Navigator#gotoStagedSitePage">
+			<var name="pageName" value="Staging Test Page" />
+			<var name="siteName" value="Site Name" />
+		</execute>
+
+		<execute macro="Staging#gotoPublishToLive" />
+
+		<execute macro="Staging#publishToLive" />
+
+		<execute macro="Navigator#openSiteURL">
+			<var name="siteName" value="Site Name" />
+		</execute>
+
+		<execute macro="ProductMenu#gotoSitesContent">
+			<var name="portlet" value="Tags" />
+		</execute>
+
+		<execute macro="Tag#viewCP">
+			<var name="tagName" value="tag name edit" />
+		</execute>
+	</command>
+
 	<command name="StagingAssetPublisher" priority="3">
 		<execute macro="ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
@@ -875,6 +968,8 @@
 	</command>
 
 	<command name="StagingDemoDocumentsAndMedia" priority="3">
+		<property name="custom.properties" value="default.layout.template.id=1_column" />
+
 		<execute macro="ProductMenu#gotoControlPanelConfiguration">
 			<var name="portlet" value="Server Administration" />
 		</execute>
@@ -892,6 +987,10 @@
 		<execute macro="Portlet#addPG">
 			<var name="portletName" value="Documents and Media" />
 		</execute>
+
+		<execute macro="DMPortlet#setDescriptiveView" />
+
+		<execute macro="DMDocument#enableActionsMenuOnPortlet" />
 
 		<execute macro="Navigator#gotoSitePage">
 			<var name="pageName" value="Staging Test Page" />
@@ -914,9 +1013,10 @@
 			<var name="metadataSetName" value="DM Metadata Set Name" />
 		</execute>
 
-		<execute macro="Navigator#gotoSitePage">
-			<var name="pageName" value="Staging Test Page" />
-			<var name="siteName" value="Site Name" />
+		<execute macro="DMMetadataSet#save" />
+
+		<execute macro="ProductMenu#gotoSitesContent">
+			<var name="portlet" value="Documents and Media" />
 		</execute>
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -2890,7 +2990,7 @@
 		<execute macro="WebContentNavigator#gotoAddCP" />
 
 		<execute macro="WebContent#addCP">
-			<var name="webContentContent" value="Web Content Contnet" />
+			<var name="webContentContent" value="Web Content Content" />
 			<var name="webContentTitle" value="Web Content Title" />
 		</execute>
 
@@ -2904,13 +3004,10 @@
 			<var name="siteName" value="Site Name" />
 		</execute>
 
+		<execute macro="Navigator#gotoStagedView" />
+
 		<execute macro="ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Web Content" />
-		</execute>
-
-		<execute macro="Navigator#gotoStagedSitePage">
-			<var name="pageName" value="Staging Test Page" />
-			<var name="siteName" value="Site Name" />
 		</execute>
 
 		<execute macro="Staging#viewPublishContentCountViaPortletStagingCP">
@@ -3283,7 +3380,8 @@
 
 	<command name="StagingRemoteDMViaGlobalScope" priority="3">
 		<property name="app.server.bundles.size" value="1" />
-		<property name="custom.properties" value="tunneling.servlet.shared.secret=1234567890123456${line.separator}auth.verifier.TunnelAuthVerifier.hosts.allowed=" />
+		<property name="custom.properties" value="tunneling.servlet.shared.secret=1234567890123456${line.separator}auth.verifier.TunnelAuthVerifier.hosts.allowed=${line.separator}dl.store.impl=com.liferay.portal.store.db.DBStore" />
+		<property name="test.name.skip.portal.instance" value="StagingUsecase#StagingRemoteDMViaGlobalScope" />
 
 		<var name="siteID" value="${siteID}" />
 
@@ -3588,7 +3686,7 @@
 		<execute function="AssertElementNotPresent" locator1="PagesConfiguration#CONTENT_CHOOSE_CONTENT_CONTENT_CHECKBOX" />
 
 		<execute macro="Navigator#gotoSitePage">
-			<var name="pageName" value="Public Pages" />
+			<var name="pageName" value="Staging Test Page" />
 			<var name="siteName" value="Site Name" />
 		</execute>
 
@@ -3714,7 +3812,7 @@
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute function="Click" locator1="Icon#HISTORY_VERTICAL_ELLIPSIS" />
+		<execute function="Click" locator1="Icon#STAGING_BAR_VERTICAL_ELLIPSIS" />
 
 		<execute function="Click" locator1="Staging#HISTORY_BUTTON" />
 

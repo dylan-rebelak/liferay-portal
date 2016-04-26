@@ -693,6 +693,7 @@ app.server.type=@{app.server.type}]]></echo>
 
 							<gradle-execute dir="modules" task="testIntegration">
 								<arg value="-Ddatabase.type=@{database.type}" />
+								<arg value="-Dmodules.only.build=true" />
 								<arg value="-Dtest.class.group.index=${axis.variable}" />
 							</gradle-execute>
 
@@ -739,7 +740,9 @@ app.server.type=@{app.server.type}]]></echo>
 			<test-action>
 				<ant dir="portal-web" target="compile-tomcat" />
 
-				<gradle-execute dir="modules" task="compileJSP" />
+				<gradle-execute dir="modules" task="compileJSP">
+					<arg value="-Dmodules.only.build=true" />
+				</gradle-execute>
 			</test-action>
 
 			<test-set-up>
@@ -779,11 +782,11 @@ app.server.type=@{app.server.type}]]></echo>
 		<run-functional-test app.server.type="jboss" database.type="mysql" />
 	</target>
 
-	<target name="functional-resin40-mysql56-jdk7">
+	<target name="functional-resin40-mysql56-jdk8">
 		<run-functional-test app.server.type="resin" database.type="mysql" />
 	</target>
 
-	<target name="functional-tcserver26-mysql56-jdk7">
+	<target name="functional-tcserver26-mysql56-jdk8">
 		<run-functional-test app.server.type="tcserver" database.type="mysql" />
 	</target>
 
@@ -803,7 +806,7 @@ app.server.type=@{app.server.type}]]></echo>
 		<antcall target="functional-tomcat8-mysql56-jdk7" />
 	</target>
 
-	<target name="functional-tomcat8-oracle12-jdk7">
+	<target name="functional-tomcat8-oracle12-jdk8">
 		<run-functional-test app.server.type="tomcat" database.type="oracle" />
 	</target>
 
@@ -811,15 +814,15 @@ app.server.type=@{app.server.type}]]></echo>
 		<run-functional-test app.server.type="tomcat" database.type="postgresql" />
 	</target>
 
-	<target name="functional-tomcat8-sybase16-jdk7">
+	<target name="functional-tomcat8-sybase16-jdk8">
 		<run-functional-test app.server.type="tomcat" database.type="sybase" />
 	</target>
 
-	<target name="functional-weblogic121-mysql56-jdk7">
+	<target name="functional-weblogic121-mysql56-jdk8">
 		<run-functional-test app.server.type="weblogic" database.type="mysql" />
 	</target>
 
-	<target name="functional-websphere85-mysql56-jdk7">
+	<target name="functional-websphere85-mysql56-jdk8">
 		<run-functional-test app.server.type="websphere" database.type="mysql" />
 	</target>
 
@@ -893,6 +896,7 @@ app.server.type=@{app.server.type}]]></echo>
 		<run-batch-test>
 			<test-action>
 				<gradle-execute dir="modules" task="test">
+					<arg value="-Dmodules.only.build=true" />
 					<arg value="-Dtest.class.group.index=${axis.variable}" />
 				</gradle-execute>
 			</test-action>
@@ -996,6 +1000,36 @@ ${output.content}</echo>
 		<run-functional-test app.server.type="tomcat" database.type="mysql" />
 	</target>
 
+	<target name="plugins-gulp-jdk7">
+		<fail message="Please set the property ${test.base.dir.name}" unless="test.base.dir.name" />
+
+		<run-batch-test>
+			<test-action>
+				<exec dir="${test.base.dir.name}" executable="npm" failonerror="true">
+					<arg value="test" />
+				</exec>
+			</test-action>
+
+			<test-set-up>
+				<prepare-test-build />
+
+				<propertyregex
+					input="${test.base.dir.name}"
+					override="true"
+					property="portlet.name"
+					regexp=".*/portlets/([a-zA-Z-]+)/?.*"
+					replace="\1"
+				/>
+
+				<generate-gulp-user-config-json portlet.name="${portlet.name}" />
+
+				<exec dir="${test.base.dir.name}" executable="npm" failonerror="true">
+					<arg value="install" />
+				</exec>
+			</test-set-up>
+		</run-batch-test>
+	</target>
+
 	<target name="portal-web-jdk7">
 		<run-batch-test>
 			<test-action>
@@ -1029,6 +1063,14 @@ ${output.content}</echo>
 		</run-batch-test>
 	</target>
 
+	<target name="release-functional-bundle-tomcat-mysql56-jdk7">
+		<antcall target="functional-bundle-tomcat-mysql56-jdk7" />
+	</target>
+
+	<target name="release-functional-smoke-bundle-tomcat-mysql56-jdk7">
+		<antcall target="functional-bundle-tomcat-mysql56-jdk7" />
+	</target>
+
 	<target name="ruby-sass-compiler-jdk7">
 		<antcall if:set="env.JENKINS_HOME" inheritAll="false" target="clean-up-java-processes" />
 
@@ -1048,7 +1090,9 @@ ${output.content}</echo>
 
 		<record action="start" name="${project.dir}/sass-compiler-log" />
 
-		<gradle-execute dir="modules" task="buildCSS" />
+		<gradle-execute dir="modules" task="buildCSS">
+			<arg value="-Dmodules.only.build=true" />
+		</gradle-execute>
 
 		<record action="stop" name="${project.dir}/sass-compiler-log" />
 

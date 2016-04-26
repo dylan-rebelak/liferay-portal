@@ -166,6 +166,25 @@
 		</sequential>
 	</macrodef>
 
+	<macrodef name="generate-gulp-user-config-json">
+		<attribute name="portlet.name" />
+
+		<attribute default="${app.server.type}" name="app.server.type" />
+		<attribute default="${app.server.@{app.server.type}.dir}" name="app.server.dir" />
+		<attribute default="user-config.json" name="file.name" />
+		<attribute default="portlets/@{portlet.name}/docroot/js/tests/util" name="file.path" />
+		<attribute default="${lp.plugins.dir}" name="plugins.dir" />
+		<attribute default="${project.dir}" name="portal.dir" />
+
+		<sequential>
+			<echo file="@{plugins.dir}/@{file.path}/@{file.name}"><![CDATA[{
+	"bundle": "@{app.server.dir}",
+	"deployDir": "@{app.server.dir}/webapps/ROOT",
+	"source": "@{portal.dir}"
+}]]></echo>
+		</sequential>
+	</macrodef>
+
 	<macrodef name="generate-jdbc-properties">
 		<attribute name="properties.file" />
 		<element name="post-action" optional="true" />
@@ -183,11 +202,25 @@ jdbc.default.url=${database.url}
 jdbc.default.username=${database.username}
 jdbc.default.password=${database.password}
 
+// HikariCP
+
 jdbc.default.maximumPoolSize=20
 jdbc.default.minimumIdle=0
 
 jdbc.counter.maximumPoolSize=5
 jdbc.counter.minimumIdle=0
+
+// Tomcat
+
+jdbc.default.initialSize=0
+jdbc.default.maxActive=20
+jdbc.default.maxIdle=0
+jdbc.default.minIdle=0
+
+jdbc.counter.initialSize=0
+jdbc.counter.maxActive=5
+jdbc.counter.maxIdle=0
+jdbc.counter.minIdle=0
 
 counter.jdbc.prefix=jdbc.counter.]]></echo>
 
@@ -1680,7 +1713,9 @@ tell application "Safari" to quit
 			<if>
 				<equals arg1="${test.build.bundle.jbosseap6.0}" arg2="true" />
 				<then>
-					<ant antfile="build-dist.xml" target="build-dist-jboss-eap-6.0" inheritAll="false" />
+					<ant antfile="build-dist.xml" target="build-dist-jboss" inheritAll="false">
+						<property name="app.server.jboss.version" value="6.0.1" />
+					</ant>
 				</then>
 			</if>
 
@@ -1709,7 +1744,9 @@ tell application "Safari" to quit
 				<elseif>
 					<equals arg1="${test.build.bundle.jbosseap6.1}" arg2="true" />
 					<then>
-						<ant antfile="build-dist.xml" target="build-dist-jboss-eap-6.1" inheritAll="false" />
+						<ant antfile="build-dist.xml" target="build-dist-jboss" inheritAll="false">
+							<property name="app.server.jboss.version" value="6.1.0" />
+						</ant>
 					</then>
 				</elseif>
 			</if>
@@ -2927,37 +2964,78 @@ org.apache.catalina.startup.ClassLoaderFactory.level=INFO]]>
 				</then>
 			</if>
 
-			<exec dir="${test.app.server.bin.dir}" executable="${app.server.stop.executable}" resolveexecutable="true">
-				<arg line="${app.server.stop.executable.arg.line}" />
-			</exec>
+			<parallel>
+				<daemons>
+					<exec dir="${test.app.server.bin.dir}" executable="${app.server.stop.executable}" resolveexecutable="true">
+						<arg line="${app.server.stop.executable.arg.line}" />
+					</exec>
+				</daemons>
+				<sequential>
+					<if>
+						<equals arg1="@{app.server.bin.dir}" arg2="${app.server.tcat.admin.bin.dir}" />
+						<then>
+							<waitfor maxwait="5" maxwaitunit="minute" timeoutproperty="app.server.stopping.timeout">
+								<not>
+									<http url="http://localhost:${test.app.server.leading.port.number}180/console" />
+								</not>
+							</waitfor>
+						</then>
+						<elseif>
+							<equals arg1="@{app.server.bin.dir}" arg2="${app.server.tcat.agent.bin.dir}" />
+							<then>
+								<waitfor maxwait="5" maxwaitunit="minute" timeoutproperty="app.server.stopping.timeout">
+									<not>
+										<http url="http://localhost:${test.app.server.leading.port.number}080" />
+									</not>
+								</waitfor>
+							</then>
+						</elseif>
+						<else>
+							<waitfor maxwait="5" maxwaitunit="minute" timeoutproperty="app.server.stopping.timeout">
+								<not>
+									<http url="http://localhost:${test.app.server.leading.port.number}080/web/guest" />
+								</not>
+							</waitfor>
+						</else>
+					</if>
 
-			<if>
-				<equals arg1="@{app.server.bin.dir}" arg2="${app.server.tcat.admin.bin.dir}" />
-				<then>
-					<waitfor maxwait="1" maxwaitunit="minute">
-						<not>
-							<http url="http://localhost:${test.app.server.leading.port.number}180/console" />
-						</not>
-					</waitfor>
-				</then>
-				<elseif>
-					<equals arg1="@{app.server.bin.dir}" arg2="${app.server.tcat.agent.bin.dir}" />
-					<then>
-						<waitfor maxwait="1" maxwaitunit="minute">
-							<not>
-								<http url="http://localhost:${test.app.server.leading.port.number}080" />
-							</not>
-						</waitfor>
-					</then>
-				</elseif>
-				<else>
-					<waitfor maxwait="1" maxwaitunit="minute">
-						<not>
-							<http url="http://localhost:${test.app.server.leading.port.number}080/web/guest" />
-						</not>
-					</waitfor>
-				</else>
-			</if>
+					<if>
+						<isset property="app.server.stopping.timeout" />
+						<then>
+							<execute>
+								jps > jps_output
+							</execute>
+
+							<var name="jps.output" unset="true" />
+
+							<loadfile property="jps.output" srcfile="jps_output" />
+
+							<if>
+								<contains string="${jps.output}" substring="Bootstrap" />
+								<then>
+									<propertyregex
+										input="${jps.output}"
+										override="true"
+										property="bootstrap.pid"
+										regexp="(|[\S\s]*\n)([0-9]+) Bootstrap[\S\s]*"
+										replace="\2"
+									/>
+
+									<execute>
+										jstack ${bootstrap.pid}
+									</execute>
+
+									<stop-app-server app.server.bundle.index="@{app.server.bundle.index}" />
+								</then>
+							</if>
+
+							<delete file="jps_output" />
+
+							<fail if="app.server.stopping.timeout" message="Server is still available at ${app.server.waiting.url}." />
+						</then>
+					</if>
+				</sequential>
+			</parallel>
 
 			<if>
 				<and>
@@ -3572,17 +3650,11 @@ go]]></replacevalue>
 
 	<target name="check-inet-address">
 		<if>
-			<and>
-				<equals arg1="${app.server.type}" arg2="jboss" />
-				<or>
-					<equals arg1="${app.server.jboss.version}" arg2="6.0.1" />
-					<equals arg1="${app.server.jboss.version}" arg2="6.1.0" />
-				</or>
-			</and>
+			<equals arg1="${app.server.type}" arg2="jboss" />
 			<then>
 				<exec executable="/bin/bash" outputproperty="inet.address">
 					<arg value="-c" />
-					<arg value="ifconfig eth0:0 | grep 'inet addr:' | cut -d: -f2 | awk '{ print $1}'" />
+					<arg value="ifconfig eth0:0 | grep 'inet ' | sed -e 's/^[[:space:]]* inet \(addr:\)\?\([0-9\.]\+\).*/\2/'" />
 				</exec>
 
 				<if>
@@ -3780,25 +3852,6 @@ go]]></replacevalue>
 				<equals arg1="${database.type}" arg2="db2" />
 			</and>
 			<then>
-				<if>
-					<equals arg1="${database.version}" arg2="9.7" />
-					<then>
-						<var name="database.version.full" value="9.7.4" />
-					</then>
-					<elseif>
-						<equals arg1="${database.version}" arg2="10.1" />
-						<then>
-							<var name="database.version.full" value="10.1.0" />
-						</then>
-					</elseif>
-					<elseif>
-						<equals arg1="${database.version}" arg2="10.5" />
-						<then>
-							<var name="database.version.full" value="10.5.1" />
-						</then>
-					</elseif>
-				</if>
-
 				<delete includeemptydirs="true" failonerror="false">
 					<fileset
 						dir="${app.server.lib.global.dir}"
@@ -3810,7 +3863,7 @@ go]]></replacevalue>
 					<sequential>
 						<mirrors-get
 							dest="${todir}"
-							src="${test.jdbc.drivers.url}/db2/${database.version.full}/@{jdbc.driver}"
+							src="${test.jdbc.drivers.url}/db2/${database.version}/@{jdbc.driver}"
 						/>
 					</sequential>
 				</for>
@@ -3852,25 +3905,6 @@ go]]></replacevalue>
 					<equals arg1="${database.type}" arg2="oracle" />
 				</and>
 				<then>
-					<if>
-						<equals arg1="${database.version}" arg2="10" />
-						<then>
-							<var name="database.version.full" value="10.2.0.1.0" />
-						</then>
-						<elseif>
-							<equals arg1="${database.version}" arg2="11" />
-							<then>
-								<var name="database.version.full" value="11.2.0.1.0" />
-							</then>
-						</elseif>
-						<elseif>
-							<equals arg1="${database.version}" arg2="12" />
-							<then>
-								<var name="database.version.full" value="12.1.0.2" />
-							</then>
-						</elseif>
-					</if>
-
 					<delete includeemptydirs="true" failonerror="false">
 						<fileset
 							dir="${app.server.lib.global.dir}"
@@ -3880,7 +3914,7 @@ go]]></replacevalue>
 
 					<mirrors-get
 						dest="${todir}"
-						src="${test.jdbc.drivers.url}/oracle/${database.version.full}/${jdbc.oracle.driver}"
+						src="${test.jdbc.drivers.url}/oracle/${database.version}/${jdbc.oracle.driver}"
 					/>
 				</then>
 			</elseif>
@@ -4878,6 +4912,7 @@ osb.lcs.portlet.oauth.consumer.secret=${osb.lcs.portlet.oauth.consumer.secret}</
 		<get-database-property property.name="database.password" />
 		<get-database-property property.name="database.url" />
 		<get-database-property property.name="database.username" />
+		<get-database-property property.name="database.version" />
 
 		<echo file="portal-impl/src/portal-ext.properties" append="true">
 
@@ -4988,6 +5023,20 @@ custom.sql.function.isnull=CONVERT(VARCHAR,?) IS NULL
 custom.sql.function.isnotnull=CONVERT(VARCHAR,?) IS NOT NULL</echo>
 				</then>
 			</elseif>
+		</if>
+
+		<if>
+			<and>
+				<equals arg1="${database.type}" arg2="oracle" />
+				<equals arg1="${database.version}" arg2="11.2.0.1.0" />
+			</and>
+			<then>
+				<replaceregexp
+					file="portal-impl/src/portal-ext.properties"
+					match="(jdbc:oracle:.*)orcl"
+					replace="\1xe"
+				/>
+			</then>
 		</if>
 
 		<if>
@@ -6366,7 +6415,7 @@ ANT_OPTS=${env.ANT_OPTS}</echo>
 					src="${tstamp.value}.zip"
 				>
 					<patternset
-						includes="liferay-portal-*/${app.server.type}-*/**"
+						includes="liferay*portal-*/${app.server.type}-*/**"
 					/>
 					<mapper
 						from="[^/]+/(.*)"
@@ -6380,7 +6429,7 @@ ANT_OPTS=${env.ANT_OPTS}</echo>
 					src="${tstamp.value}.zip"
 				>
 					<patternset
-						includes="liferay-portal-*/deploy/**"
+						includes="liferay*portal-*/deploy/**"
 					/>
 					<mapper
 						from="[^/]+/(.*)"
@@ -6394,7 +6443,7 @@ ANT_OPTS=${env.ANT_OPTS}</echo>
 					src="${tstamp.value}.zip"
 				>
 					<patternset
-						includes="liferay-portal-*/osgi/**"
+						includes="liferay*portal-*/osgi/**"
 					/>
 					<mapper
 						from="[^/]+/(.*)"
@@ -6408,7 +6457,7 @@ ANT_OPTS=${env.ANT_OPTS}</echo>
 					src="${tstamp.value}.zip"
 				>
 					<patternset
-						includes="liferay-portal-*/patching-tool/patches/**"
+						includes="liferay*portal-*/patching-tool/patches/**"
 					/>
 					<mapper
 						from="[^/]+/(.*)"
@@ -6564,6 +6613,10 @@ cluster.link.bind.addr["cluster-link-udp"]=127.0.0.1</echo>
 							<os family="windows" />
 							<then>
 								<exec executable="${db2.executable}">
+									<arg line="/c /w db2 drop db lportal" />
+								</exec>
+
+								<exec executable="${db2.executable}">
 									<arg line="/c /w db2 -fcreate.sql -td;" />
 								</exec>
 							</then>
@@ -6668,7 +6721,7 @@ cluster.link.bind.addr["cluster-link-udp"]=127.0.0.1</echo>
 								<arg value="${database.username}" />
 								<arg value="-P" />
 								<arg value="${database.password}" />
-								<arg value="i" />
+								<arg value="-i" />
 								<arg value="create.sql" />
 							</exec>
 						</then>
@@ -7448,6 +7501,7 @@ jdbc.default.password=${database.mysql.password}</echo>
 							<resource-root path="hsql.jar" />
 							<resource-root path="mariadb.jar" />
 							<resource-root path="mysql.jar" />
+							<resource-root path="ojdbc6.jar" />
 						]]>
 					</replacevalue>
 				</replace>
@@ -7894,6 +7948,13 @@ jdbc.default.password=${database.mysql.password}</echo>
 		<ant dir="util-java" target="test-unit" inheritAll="false" />
 	</target>
 
+	<target name="update-test-gradle-properties">
+		<propertyfile file="${project.dir}/.gradle/gradle.properties">
+			<entry key="database.jdbc.drivers.url" value="${test.jdbc.drivers.url}" />
+			<entry key="database.oracle.version" value="${database.oracle.version}" />
+		</propertyfile>
+	</target>
+
 	<target name="upgrade-legacy-database">
 		<delete file="${liferay.home}/build-db-upgrade.xml" />
 		<delete file="${liferay.home}/db_upgrade_log" />
@@ -7939,7 +8000,7 @@ jdbc.default.password=${database.mysql.password}</echo>
 				<waitfor maxwait="15" maxwaitunit="minute" timeoutproperty="upgrade.timeout.error">
 					<resourcecontains
 						resource="${liferay.home}/db_upgrade_log"
-						substring="Running modules upgrades. Connect to your Gogo Shell to check the status."
+						substring="Running modules upgrades. Connect to Gogo shell to check the status."
 					/>
 				</waitfor>
 

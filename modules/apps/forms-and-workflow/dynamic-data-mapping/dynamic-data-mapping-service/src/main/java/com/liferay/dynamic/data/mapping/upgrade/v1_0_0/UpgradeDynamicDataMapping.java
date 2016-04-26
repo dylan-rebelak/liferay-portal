@@ -39,7 +39,6 @@ import com.liferay.dynamic.data.mapping.model.DDMFormLayout;
 import com.liferay.dynamic.data.mapping.model.DDMStorageLink;
 import com.liferay.dynamic.data.mapping.model.DDMStructure;
 import com.liferay.dynamic.data.mapping.model.DDMStructureConstants;
-import com.liferay.dynamic.data.mapping.model.DDMTemplate;
 import com.liferay.dynamic.data.mapping.model.LocalizedValue;
 import com.liferay.dynamic.data.mapping.model.UnlocalizedValue;
 import com.liferay.dynamic.data.mapping.model.Value;
@@ -112,6 +111,7 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -561,11 +561,11 @@ public class UpgradeDynamicDataMapping extends UpgradeProcess {
 
 			String dataType = ddmFormField.getDataType();
 
-			if (Validator.equals(dataType, "file-upload")) {
+			if (Objects.equals(dataType, "file-upload")) {
 				ddmFormField.setDataType("document-library");
 				ddmFormField.setType("ddm-documentlibrary");
 			}
-			else if (Validator.equals(dataType, "image")) {
+			else if (Objects.equals(dataType, "image")) {
 				ddmFormField.setFieldNamespace("ddm");
 				ddmFormField.setType("ddm-image");
 			}
@@ -790,7 +790,8 @@ public class UpgradeDynamicDataMapping extends UpgradeProcess {
 
 		List<ResourcePermission> resourcePermissions =
 			_resourcePermissionLocalService.getResourcePermissions(
-				companyId, DDMStructure.class.getName(),
+				companyId,
+				"com.liferay.portlet.dynamicdatamapping.DDMStructure",
 				ResourceConstants.SCOPE_INDIVIDUAL,
 				StringUtil.valueOf(structureId));
 
@@ -956,7 +957,7 @@ public class UpgradeDynamicDataMapping extends UpgradeProcess {
 
 		List<ResourcePermission> resourcePermissions =
 			_resourcePermissionLocalService.getResourcePermissions(
-				companyId, DDMTemplate.class.getName(),
+				companyId, "com.liferay.portlet.dynamicdatamapping.DDMTemplate",
 				ResourceConstants.SCOPE_INDIVIDUAL,
 				StringUtil.valueOf(templateId));
 
