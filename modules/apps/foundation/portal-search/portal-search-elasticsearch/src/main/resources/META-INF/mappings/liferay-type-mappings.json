@@ -5,7 +5,7 @@
 			{
 				"template_long_sortable": {
 					"mapping": {
-						"index": "not_analyzed",
+						"index": "false",
 						"store": "true",
 						"type": "long"
 					},
@@ -16,7 +16,7 @@
 			{
 				"template_string_sortable": {
 					"mapping": {
-						"index": "not_analyzed",
+						"index": "false",
 						"store": "true",
 						"type": "keyword"
 					},
@@ -27,7 +27,7 @@
 			{
 				"template_geolocation": {
 					"mapping": {
-						"index": "not_analyzed",
+						"index": "false",
 						"lat_lon": true,
 						"store": true,
 						"type": "geo_point"
@@ -38,7 +38,7 @@
 			{
 				"template_assetCategoryTitles": {
 					"mapping": {
-						"index": "analyzed",
+						"index": "true",
 						"store": "true",
 						"term_vector": "with_positions_offsets",
 						"type": "text"
@@ -50,7 +50,7 @@
 			{
 				"template_ddm_keyword": {
 					"mapping": {
-						"index": "not_analyzed",
+						"index": "false",
 						"store": "true",
 						"type": "keyword"
 					},
@@ -73,7 +73,7 @@
 				"template_ar": {
 					"mapping": {
 						"analyzer": "arabic",
-						"index": "analyzed",
+						"index": "true",
 						"store": "true",
 						"term_vector": "with_positions_offsets",
 						"type": "text"
@@ -87,7 +87,7 @@
 				"template_bg": {
 					"mapping": {
 						"analyzer": "bulgarian",
-						"index": "analyzed",
+						"index": "true",
 						"store": "true",
 						"term_vector": "with_positions_offsets",
 						"type": "text"
@@ -101,7 +101,7 @@
 				"template_ca": {
 					"mapping": {
 						"analyzer": "catalan",
-						"index": "analyzed",
+						"index": "true",
 						"store": "true",
 						"term_vector": "with_positions_offsets",
 						"type": "text"
@@ -115,7 +115,7 @@
 				"template_cs": {
 					"mapping": {
 						"analyzer": "czech",
-						"index": "analyzed",
+						"index": "true",
 						"store": "true",
 						"term_vector": "with_positions_offsets",
 						"type": "text"
@@ -129,7 +129,7 @@
 				"template_da": {
 					"mapping": {
 						"analyzer": "danish",
-						"index": "analyzed",
+						"index": "true",
 						"store": "true",
 						"term_vector": "with_positions_offsets",
 						"type": "text"
@@ -143,7 +143,7 @@
 				"template_de": {
 					"mapping": {
 						"analyzer": "german",
-						"index": "analyzed",
+						"index": "true",
 						"store": "true",
 						"term_vector": "with_positions_offsets",
 						"type": "text"
@@ -157,7 +157,7 @@
 				"template_el": {
 					"mapping": {
 						"analyzer": "greek",
-						"index": "analyzed",
+						"index": "true",
 						"store": "true",
 						"term_vector": "with_positions_offsets",
 						"type": "text"
@@ -171,7 +171,7 @@
 				"template_en": {
 					"mapping": {
 						"analyzer": "english",
-						"index": "analyzed",
+						"index": "true",
 						"store": "true",
 						"term_vector": "with_positions_offsets",
 						"type": "text"
@@ -185,7 +185,7 @@
 				"template_es": {
 					"mapping": {
 						"analyzer": "spanish",
-						"index": "analyzed",
+						"index": "true",
 						"store": "true",
 						"term_vector": "with_positions_offsets",
 						"type": "text"
@@ -199,7 +199,7 @@
 				"template_eu": {
 					"mapping": {
 						"analyzer": "basque",
-						"index": "analyzed",
+						"index": "true",
 						"store": "true",
 						"term_vector": "with_positions_offsets",
 						"type": "text"
@@ -213,7 +213,7 @@
 				"template_fi": {
 					"mapping": {
 						"analyzer": "finnish",
-						"index": "analyzed",
+						"index": "true",
 						"store": "true",
 						"term_vector": "with_positions_offsets",
 						"type": "text"
@@ -227,7 +227,7 @@
 				"template_fr": {
 					"mapping": {
 						"analyzer": "french",
-						"index": "analyzed",
+						"index": "true",
 						"store": "true",
 						"term_vector": "with_positions_offsets",
 						"type": "text"
@@ -241,7 +241,7 @@
 				"template_hi": {
 					"mapping": {
 						"analyzer": "hindi",
-						"index": "analyzed",
+						"index": "true",
 						"store": "true",
 						"term_vector": "with_positions_offsets",
 						"type": "text"
@@ -255,7 +255,7 @@
 				"template_hu": {
 					"mapping": {
 						"analyzer": "hungarian",
-						"index": "analyzed",
+						"index": "true",
 						"store": "true",
 						"term_vector": "with_positions_offsets",
 						"type": "text"
@@ -269,7 +269,7 @@
 				"template_hy": {
 					"mapping": {
 						"analyzer": "armenian",
-						"index": "analyzed",
+						"index": "true",
 						"store": "true",
 						"term_vector": "with_positions_offsets",
 						"type": "text"
@@ -283,7 +283,7 @@
 				"template_id": {
 					"mapping": {
 						"analyzer": "indonesian",
-						"index": "analyzed",
+						"index": "true",
 						"store": "true",
 						"term_vector": "with_positions_offsets",
 						"type": "text"
@@ -297,7 +297,7 @@
 				"template_it": {
 					"mapping": {
 						"analyzer": "italian",
-						"index": "analyzed",
+						"index": "true",
 						"store": "true",
 						"term_vector": "with_positions_offsets",
 						"type": "text"
@@ -311,7 +311,7 @@
 				"template_ja": {
 					"mapping": {
 						"analyzer": "kuromoji",
-						"index": "analyzed",
+						"index": "true",
 						"store": "true",
 						"term_vector": "with_positions_offsets",
 						"type": "text"
@@ -325,7 +325,7 @@
 				"template_ko": {
 					"mapping": {
 						"analyzer": "cjk",
-						"index": "analyzed",
+						"index": "true",
 						"store": "true",
 						"term_vector": "with_positions_offsets",
 						"type": "text"
@@ -339,7 +339,7 @@
 				"template_nl": {
 					"mapping": {
 						"analyzer": "dutch",
-						"index": "analyzed",
+						"index": "true",
 						"store": "true",
 						"term_vector": "with_positions_offsets",
 						"type": "text"
@@ -353,7 +353,7 @@
 				"template_no": {
 					"mapping": {
 						"analyzer": "norwegian",
-						"index": "analyzed",
+						"index": "true",
 						"store": "true",
 						"term_vector": "with_positions_offsets",
 						"type": "text"
@@ -367,7 +367,7 @@
 				"template_pl": {
 					"mapping": {
 						"analyzer": "polish",
-						"index": "analyzed",
+						"index": "true",
 						"store": "true",
 						"term_vector": "with_positions_offsets",
 						"type": "text"
@@ -381,7 +381,7 @@
 				"template_pt": {
 					"mapping": {
 						"analyzer": "portuguese",
-						"index": "analyzed",
+						"index": "true",
 						"store": "true",
 						"term_vector": "with_positions_offsets",
 						"type": "text"
@@ -395,7 +395,7 @@
 				"template_pt_br": {
 					"mapping": {
 						"analyzer": "brazilian",
-						"index": "analyzed",
+						"index": "true",
 						"store": "true",
 						"term_vector": "with_positions_offsets",
 						"type": "text"
@@ -408,7 +408,7 @@
 				"template_ro": {
 					"mapping": {
 						"analyzer": "romanian",
-						"index": "analyzed",
+						"index": "true",
 						"store": "true",
 						"term_vector": "with_positions_offsets",
 						"type": "text"
@@ -422,7 +422,7 @@
 				"template_ru": {
 					"mapping": {
 						"analyzer": "russian",
-						"index": "analyzed",
+						"index": "true",
 						"store": "true",
 						"term_vector": "with_positions_offsets",
 						"type": "text"
@@ -436,7 +436,7 @@
 				"template_sv": {
 					"mapping": {
 						"analyzer": "swedish",
-						"index": "analyzed",
+						"index": "true",
 						"store": "true",
 						"term_vector": "with_positions_offsets",
 						"type": "text"
@@ -450,7 +450,7 @@
 				"template_th": {
 					"mapping": {
 						"analyzer": "thai",
-						"index": "analyzed",
+						"index": "true",
 						"store": "true",
 						"term_vector": "with_positions_offsets",
 						"type": "text"
@@ -464,7 +464,7 @@
 				"template_tr": {
 					"mapping": {
 						"analyzer": "turkish",
-						"index": "analyzed",
+						"index": "true",
 						"store": "true",
 						"term_vector": "with_positions_offsets",
 						"type": "text"
@@ -478,7 +478,7 @@
 				"template_zh": {
 					"mapping": {
 						"analyzer": "smartcn",
-						"index": "analyzed",
+						"index": "true",
 						"store": "true",
 						"term_vector": "with_positions_offsets",
 						"type": "text"
@@ -491,7 +491,7 @@
 			{
 				"template_ddm": {
 					"mapping": {
-						"index": "analyzed",
+						"index": "true",
 						"store": "true",
 						"type": "text"
 					},
@@ -502,7 +502,7 @@
 			{
 				"template_expando": {
 					"mapping": {
-						"index": "analyzed",
+						"index": "true",
 						"store": "true",
 						"type": "text"
 					},
@@ -513,7 +513,7 @@
 		],
 		"properties": {
 			"ancestorOrganizationIds": {
-				"index": "not_analyzed",
+				"index": "false",
 				"store": "yes",
 				"type": "keyword"
 			},
@@ -523,22 +523,22 @@
 				"type": "keyword"
 			},
 			"assetCategoryId": {
-				"index": "not_analyzed",
+				"index": "false",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"assetCategoryIds": {
-				"index": "not_analyzed",
+				"index": "false",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"assetTagId": {
-				"index": "not_analyzed",
+				"index": "false",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"assetTagIds": {
-				"index": "not_analyzed",
+				"index": "false",
 				"store": "yes",
 				"type": "keyword"
 			},
@@ -550,367 +550,367 @@
 				"type": "keyword"
 			},
 			"assetVocabularyId": {
-				"index": "not_analyzed",
+				"index": "false",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"assetVocabularyIds": {
-				"index": "not_analyzed",
+				"index": "false",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"classTypeId": {
-				"index": "not_analyzed",
+				"index": "false",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"companyId": {
-				"index": "not_analyzed",
+				"index": "false",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"configurationModelAttributeName": {
-				"index": "not_analyzed",
+				"index": "false",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"configurationModelFactoryPid": {
-				"index": "not_analyzed",
+				"index": "false",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"configurationModelId": {
-				"index": "not_analyzed",
+				"index": "false",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"content": {
-				"index": "analyzed",
+				"index": "true",
 				"store": "yes",
 				"term_vector": "with_positions_offsets",
 				"type": "text"
 			},
 			"createDate": {
 				"format": "yyyyMMddHHmmss",
-				"index": "not_analyzed",
+				"index": "false",
 				"store": "yes",
 				"type": "date"
 			},
 			"dataRepositoryId": {
-				"index": "not_analyzed",
+				"index": "false",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"ddmContent": {
-				"index": "analyzed",
+				"index": "true",
 				"store": "yes",
 				"term_vector": "with_positions_offsets",
 				"type": "text"
 			},
 			"ddmStructureKey": {
-				"index": "not_analyzed",
+				"index": "false",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"ddmTemplateKey": {
-				"index": "not_analyzed",
+				"index": "false",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"description": {
-				"index": "analyzed",
+				"index": "true",
 				"store": "yes",
 				"term_vector": "with_positions_offsets",
 				"type": "text"
 			},
 			"discussion": {
-				"index": "not_analyzed",
+				"index": "false",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"displayDate": {
 				"format": "yyyyMMddHHmmss",
-				"index": "not_analyzed",
+				"index": "false",
 				"store": "yes",
 				"type": "date"
 			},
 			"emailAddress": {
-				"index": "not_analyzed",
+				"index": "false",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"endTime": {
-				"index": "not_analyzed",
+				"index": "false",
 				"store": "yes",
 				"type": "long"
 			},
 			"entryClassName": {
-				"index": "not_analyzed",
+				"index": "false",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"entryClassPK": {
-				"index": "not_analyzed",
+				"index": "false",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"expirationDate": {
 				"format": "yyyyMMddHHmmss",
-				"index": "not_analyzed",
+				"index": "false",
 				"store": "yes",
 				"type": "date"
 			},
 			"extension": {
-				"index": "not_analyzed",
+				"index": "false",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"fileEntryTypeId": {
-				"index": "not_analyzed",
+				"index": "false",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"folderId": {
-				"index": "not_analyzed",
+				"index": "false",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"geoLocation": {
-				"index": "not_analyzed",
+				"index": "false",
 				"lat_lon": true,
 				"store": "yes",
 				"type": "geo_point"
 			},
 			"groupId": {
-				"index": "not_analyzed",
+				"index": "false",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"groupIds": {
-				"index": "not_analyzed",
+				"index": "false",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"groupRoleId": {
-				"index": "not_analyzed",
+				"index": "false",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"head": {
-				"index": "not_analyzed",
+				"index": "false",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"hidden": {
-				"index": "not_analyzed",
+				"index": "false",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"id": {
-				"index": "not_analyzed",
+				"index": "false",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"languageId": {
-				"index": "not_analyzed",
+				"index": "false",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"layoutUuid": {
-				"index": "not_analyzed",
+				"index": "false",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"leftOrganizationId": {
-				"index": "not_analyzed",
+				"index": "false",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"mimeType": {
-				"index": "not_analyzed",
+				"index": "false",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"modified": {
 				"format": "yyyyMMddHHmmss",
-				"index": "not_analyzed",
+				"index": "false",
 				"store": "yes",
 				"type": "date"
 			},
 			"nodeId": {
-				"index": "not_analyzed",
+				"index": "false",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"organizationId": {
-				"index": "not_analyzed",
+				"index": "false",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"organizationIds": {
-				"index": "not_analyzed",
+				"index": "false",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"parentCategoryId": {
-				"index": "not_analyzed",
+				"index": "false",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"parentCategoryIds": {
-				"index": "not_analyzed",
+				"index": "false",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"parentOrganizationId": {
-				"index": "not_analyzed",
+				"index": "false",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"path": {
-				"index": "not_analyzed",
+				"index": "false",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"properties": {
-				"index": "not_analyzed",
+				"index": "false",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"publishDate": {
 				"format": "yyyyMMddHHmmss",
-				"index": "not_analyzed",
+				"index": "false",
 				"store": "yes",
 				"type": "date"
 			},
 			"readCount": {
-				"index": "not_analyzed",
+				"index": "false",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"recordSetId": {
-				"index": "not_analyzed",
+				"index": "false",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"removedByUser": {
-				"index": "not_analyzed",
+				"index": "false",
 				"type": "keyword"
 			},
 			"removedDate": {
 				"format": "yyyyMMddHHmmss",
-				"index": "not_analyzed",
+				"index": "false",
 				"store": "yes",
 				"type": "date"
 			},
 			"rightOrganizationId": {
-				"index": "not_analyzed",
+				"index": "false",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"roleId": {
-				"index": "not_analyzed",
+				"index": "false",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"roleIds": {
-				"index": "not_analyzed",
+				"index": "false",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"rootEntryClassName": {
-				"index": "not_analyzed",
+				"index": "false",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"rootEntryClassPK": {
-				"index": "not_analyzed",
+				"index": "false",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"scopeGroupId": {
-				"index": "not_analyzed",
+				"index": "false",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"screenName": {
-				"index": "not_analyzed",
+				"index": "false",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"size": {
-				"index": "not_analyzed",
+				"index": "false",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"status": {
-				"index": "not_analyzed",
+				"index": "false",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"subtitle": {
-				"index": "analyzed",
+				"index": "true",
 				"store": "yes",
 				"type": "text"
 			},
 			"teamIds": {
-				"index": "not_analyzed",
+				"index": "false",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"threadId": {
-				"index": "not_analyzed",
+				"index": "false",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"title": {
-				"index": "analyzed",
+				"index": "true",
 				"store": "yes",
 				"term_vector": "with_positions_offsets",
 				"type": "text"
 			},
 			"treePath": {
-				"index": "not_analyzed",
+				"index": "false",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"type": {
-				"index": "not_analyzed",
+				"index": "false",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"uid": {
-				"index": "not_analyzed",
+				"index": "false",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"userGroupId": {
-				"index": "not_analyzed",
+				"index": "false",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"userGroupIds": {
-				"index": "not_analyzed",
+				"index": "false",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"userId": {
-				"index": "not_analyzed",
+				"index": "false",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"userName": {
-				"index": "not_analyzed",
+				"index": "false",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"version": {
-				"index": "not_analyzed",
+				"index": "false",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"visible": {
-				"index": "not_analyzed",
+				"index": "false",
 				"store": "yes",
 				"type": "keyword"
 			}

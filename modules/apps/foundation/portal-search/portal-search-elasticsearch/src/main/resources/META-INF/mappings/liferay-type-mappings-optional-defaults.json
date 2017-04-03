@@ -3,7 +3,7 @@
 		{
 			"template_": {
 				"mapping": {
-					"index": "analyzed",
+					"index": "true",
 					"store": "true",
 					"type": "text"
 				},
