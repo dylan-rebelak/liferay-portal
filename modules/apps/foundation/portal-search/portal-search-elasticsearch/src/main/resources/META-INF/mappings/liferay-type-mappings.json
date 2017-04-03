@@ -18,7 +18,7 @@
 					"mapping": {
 						"index": "not_analyzed",
 						"store": "true",
-						"type": "string"
+						"type": "keyword"
 					},
 					"match": "*_sortable",
 					"match_mapping_type": "string"
@@ -41,7 +41,7 @@
 						"index": "analyzed",
 						"store": "true",
 						"term_vector": "with_positions_offsets",
-						"type": "string"
+						"type": "text"
 					},
 					"match": "assetCategoryTitles*",
 					"match_mapping_type": "string"
@@ -52,7 +52,7 @@
 					"mapping": {
 						"index": "not_analyzed",
 						"store": "true",
-						"type": "string"
+						"type": "keyword"
 					},
 					"match": "ddm__keyword__*",
 					"match_mapping_type": "string"
@@ -63,7 +63,7 @@
 					"mapping": {
 						"analyzer" : "keyword_lowercase",
 						"store": "true",
-						"type": "string"
+						"type": "keyword"
 					},
 					"match": "expando__keyword__*",
 					"match_mapping_type": "string"
@@ -76,7 +76,7 @@
 						"index": "analyzed",
 						"store": "true",
 						"term_vector": "with_positions_offsets",
-						"type": "string"
+						"type": "text"
 					},
 					"match": "\\w+_ar\\b|\\w+_ar_[A-Z]{2}\\b",
 					"match_mapping_type": "string",
@@ -90,7 +90,7 @@
 						"index": "analyzed",
 						"store": "true",
 						"term_vector": "with_positions_offsets",
-						"type": "string"
+						"type": "text"
 					},
 					"match": "\\w+_bg\\b|\\w+_bg_[A-Z]{2}\\b",
 					"match_mapping_type": "string",
@@ -104,7 +104,7 @@
 						"index": "analyzed",
 						"store": "true",
 						"term_vector": "with_positions_offsets",
-						"type": "string"
+						"type": "text"
 					},
 					"match": "\\w+_ca\\b|\\w+_ca_[A-Z]{2}\\b",
 					"match_mapping_type": "string",
@@ -118,7 +118,7 @@
 						"index": "analyzed",
 						"store": "true",
 						"term_vector": "with_positions_offsets",
-						"type": "string"
+						"type": "text"
 					},
 					"match": "\\w+_cs\\b|\\w+_cs_[A-Z]{2}\\b",
 					"match_mapping_type": "string",
@@ -132,7 +132,7 @@
 						"index": "analyzed",
 						"store": "true",
 						"term_vector": "with_positions_offsets",
-						"type": "string"
+						"type": "text"
 					},
 					"match": "\\w+_da\\b|\\w+_da_[A-Z]{2}\\b",
 					"match_mapping_type": "string",
@@ -146,7 +146,7 @@
 						"index": "analyzed",
 						"store": "true",
 						"term_vector": "with_positions_offsets",
-						"type": "string"
+						"type": "text"
 					},
 					"match": "\\w+_de\\b|\\w+_de_[A-Z]{2}\\b",
 					"match_mapping_type": "string",
@@ -160,7 +160,7 @@
 						"index": "analyzed",
 						"store": "true",
 						"term_vector": "with_positions_offsets",
-						"type": "string"
+						"type": "text"
 					},
 					"match": "\\w+_el\\b|\\w+_el_[A-Z]{2}\\b",
 					"match_mapping_type": "string",
@@ -174,7 +174,7 @@
 						"index": "analyzed",
 						"store": "true",
 						"term_vector": "with_positions_offsets",
-						"type": "string"
+						"type": "text"
 					},
 					"match": "\\w+_en\\b|\\w+_en_[A-Z]{2}\\b",
 					"match_mapping_type": "string",
@@ -188,7 +188,7 @@
 						"index": "analyzed",
 						"store": "true",
 						"term_vector": "with_positions_offsets",
-						"type": "string"
+						"type": "text"
 					},
 					"match": "\\w+_es\\b|\\w+_es_[A-Z]{2}\\b",
 					"match_mapping_type": "string",
@@ -202,7 +202,7 @@
 						"index": "analyzed",
 						"store": "true",
 						"term_vector": "with_positions_offsets",
-						"type": "string"
+						"type": "text"
 					},
 					"match": "\\w+_eu\\b|\\w+_eu_[A-Z]{2}\\b",
 					"match_mapping_type": "string",
@@ -216,7 +216,7 @@
 						"index": "analyzed",
 						"store": "true",
 						"term_vector": "with_positions_offsets",
-						"type": "string"
+						"type": "text"
 					},
 					"match": "\\w+_fi\\b|\\w+_fi_[A-Z]{2}\\b",
 					"match_mapping_type": "string",
@@ -230,7 +230,7 @@
 						"index": "analyzed",
 						"store": "true",
 						"term_vector": "with_positions_offsets",
-						"type": "string"
+						"type": "text"
 					},
 					"match": "\\w+_fr\\b|\\w+_fr_[A-Z]{2}\\b",
 					"match_mapping_type": "string",
@@ -244,7 +244,7 @@
 						"index": "analyzed",
 						"store": "true",
 						"term_vector": "with_positions_offsets",
-						"type": "string"
+						"type": "text"
 					},
 					"match": "\\w+_hi\\b|\\w+_hi_[A-Z]{2}\\b",
 					"match_mapping_type": "string",
@@ -258,7 +258,7 @@
 						"index": "analyzed",
 						"store": "true",
 						"term_vector": "with_positions_offsets",
-						"type": "string"
+						"type": "text"
 					},
 					"match": "\\w+_hu\\b|\\w+_hu_[A-Z]{2}\\b",
 					"match_mapping_type": "string",
@@ -272,7 +272,7 @@
 						"index": "analyzed",
 						"store": "true",
 						"term_vector": "with_positions_offsets",
-						"type": "string"
+						"type": "text"
 					},
 					"match": "\\w+_hy\\b|\\w+_hy_[A-Z]{2}\\b",
 					"match_mapping_type": "string",
@@ -286,7 +286,7 @@
 						"index": "analyzed",
 						"store": "true",
 						"term_vector": "with_positions_offsets",
-						"type": "string"
+						"type": "text"
 					},
 					"match": "\\w+_id\\b|\\w+_id_[A-Z]{2}\\b",
 					"match_mapping_type": "string",
@@ -300,7 +300,7 @@
 						"index": "analyzed",
 						"store": "true",
 						"term_vector": "with_positions_offsets",
-						"type": "string"
+						"type": "text"
 					},
 					"match": "\\w+_it\\b|\\w+_it_[A-Z]{2}\\b",
 					"match_mapping_type": "string",
@@ -314,7 +314,7 @@
 						"index": "analyzed",
 						"store": "true",
 						"term_vector": "with_positions_offsets",
-						"type": "string"
+						"type": "text"
 					},
 					"match": "\\w+_ja\\b|\\w+_ja_[A-Z]{2}\\b",
 					"match_mapping_type": "string",
@@ -328,7 +328,7 @@
 						"index": "analyzed",
 						"store": "true",
 						"term_vector": "with_positions_offsets",
-						"type": "string"
+						"type": "text"
 					},
 					"match": "\\w+_ko\\b|\\w+_ko_[A-Z]{2}\\b",
 					"match_mapping_type": "string",
@@ -342,7 +342,7 @@
 						"index": "analyzed",
 						"store": "true",
 						"term_vector": "with_positions_offsets",
-						"type": "string"
+						"type": "text"
 					},
 					"match": "\\w+_nl\\b|\\w+_nl_[A-Z]{2}\\b",
 					"match_mapping_type": "string",
@@ -356,7 +356,7 @@
 						"index": "analyzed",
 						"store": "true",
 						"term_vector": "with_positions_offsets",
-						"type": "string"
+						"type": "text"
 					},
 					"match": "\\w+_nb\\b|\\w+_nb_[A-Z]{2}\\b",
 					"match_mapping_type": "string",
@@ -370,7 +370,7 @@
 						"index": "analyzed",
 						"store": "true",
 						"term_vector": "with_positions_offsets",
-						"type": "string"
+						"type": "text"
 					},
 					"match": "\\w+_pl\\b|\\w+_pl_[A-Z]{2}\\b",
 					"match_mapping_type": "string",
@@ -384,7 +384,7 @@
 						"index": "analyzed",
 						"store": "true",
 						"term_vector": "with_positions_offsets",
-						"type": "string"
+						"type": "text"
 					},
 					"match": "\\w+_pt\\b|\\w+_pt_PT\\b",
 					"match_mapping_type": "string",
@@ -398,7 +398,7 @@
 						"index": "analyzed",
 						"store": "true",
 						"term_vector": "with_positions_offsets",
-						"type": "string"
+						"type": "text"
 					},
 					"match": "*_pt_BR",
 					"match_mapping_type": "string"
@@ -411,7 +411,7 @@
 						"index": "analyzed",
 						"store": "true",
 						"term_vector": "with_positions_offsets",
-						"type": "string"
+						"type": "text"
 					},
 					"match": "\\w+_ro\\b|\\w+_ro_RO\\b",
 					"match_mapping_type": "string",
@@ -425,7 +425,7 @@
 						"index": "analyzed",
 						"store": "true",
 						"term_vector": "with_positions_offsets",
-						"type": "string"
+						"type": "text"
 					},
 					"match": "\\w+_ru\\b|\\w+_ru_RU\\b",
 					"match_mapping_type": "string",
@@ -439,7 +439,7 @@
 						"index": "analyzed",
 						"store": "true",
 						"term_vector": "with_positions_offsets",
-						"type": "string"
+						"type": "text"
 					},
 					"match": "\\w+_sv\\b|\\w+_sv_[A-Z]{2}\\b",
 					"match_mapping_type": "string",
@@ -453,7 +453,7 @@
 						"index": "analyzed",
 						"store": "true",
 						"term_vector": "with_positions_offsets",
-						"type": "string"
+						"type": "text"
 					},
 					"match": "\\w+_th\\b|\\w+_th_TH\\b",
 					"match_mapping_type": "string",
@@ -467,7 +467,7 @@
 						"index": "analyzed",
 						"store": "true",
 						"term_vector": "with_positions_offsets",
-						"type": "string"
+						"type": "text"
 					},
 					"match": "\\w+_tr\\b|\\w+_tr_TR\\b",
 					"match_mapping_type": "string",
@@ -481,7 +481,7 @@
 						"index": "analyzed",
 						"store": "true",
 						"term_vector": "with_positions_offsets",
-						"type": "string"
+						"type": "text"
 					},
 					"match": "\\w+_zh\\b|\\w+_zh_[A-Z]{2}\\b",
 					"match_mapping_type": "string",
@@ -493,7 +493,7 @@
 					"mapping": {
 						"index": "analyzed",
 						"store": "true",
-						"type": "string"
+						"type": "text"
 					},
 					"match": "ddm__*",
 					"match_mapping_type": "string"
@@ -504,7 +504,7 @@
 					"mapping": {
 						"index": "analyzed",
 						"store": "true",
-						"type": "string"
+						"type": "text"
 					},
 					"match": "expando__*",
 					"match_mapping_type": "string"
@@ -515,80 +515,80 @@
 			"ancestorOrganizationIds": {
 				"index": "not_analyzed",
 				"store": "yes",
-				"type": "string"
+				"type": "keyword"
 			},
 			"articleId": {
 				"analyzer": "keyword_lowercase",
 				"store": "yes",
-				"type": "string"
+				"type": "keyword"
 			},
 			"assetCategoryId": {
 				"index": "not_analyzed",
 				"store": "yes",
-				"type": "string"
+				"type": "keyword"
 			},
 			"assetCategoryIds": {
 				"index": "not_analyzed",
 				"store": "yes",
-				"type": "string"
+				"type": "keyword"
 			},
 			"assetTagId": {
 				"index": "not_analyzed",
 				"store": "yes",
-				"type": "string"
+				"type": "keyword"
 			},
 			"assetTagIds": {
 				"index": "not_analyzed",
 				"store": "yes",
-				"type": "string"
+				"type": "keyword"
 			},
 			"assetTagNames": {
 				"analyzer" : "keyword_lowercase",
 				"search_analyzer" : "asset_tag_name",
 				"store": "yes",
 				"term_vector": "with_positions_offsets",
-				"type": "string"
+				"type": "keyword"
 			},
 			"assetVocabularyId": {
 				"index": "not_analyzed",
 				"store": "yes",
-				"type": "string"
+				"type": "keyword"
 			},
 			"assetVocabularyIds": {
 				"index": "not_analyzed",
 				"store": "yes",
-				"type": "string"
+				"type": "keyword"
 			},
 			"classTypeId": {
 				"index": "not_analyzed",
 				"store": "yes",
-				"type": "string"
+				"type": "keyword"
 			},
 			"companyId": {
 				"index": "not_analyzed",
 				"store": "yes",
-				"type": "string"
+				"type": "keyword"
 			},
 			"configurationModelAttributeName": {
 				"index": "not_analyzed",
 				"store": "yes",
-				"type": "string"
+				"type": "keyword"
 			},
 			"configurationModelFactoryPid": {
 				"index": "not_analyzed",
 				"store": "yes",
-				"type": "string"
+				"type": "keyword"
 			},
 			"configurationModelId": {
 				"index": "not_analyzed",
 				"store": "yes",
-				"type": "string"
+				"type": "keyword"
 			},
 			"content": {
 				"index": "analyzed",
 				"store": "yes",
 				"term_vector": "with_positions_offsets",
-				"type": "string"
+				"type": "text"
 			},
 			"createDate": {
 				"format": "yyyyMMddHHmmss",
@@ -599,34 +599,34 @@
 			"dataRepositoryId": {
 				"index": "not_analyzed",
 				"store": "yes",
-				"type": "string"
+				"type": "keyword"
 			},
 			"ddmContent": {
 				"index": "analyzed",
 				"store": "yes",
 				"term_vector": "with_positions_offsets",
-				"type": "string"
+				"type": "text"
 			},
 			"ddmStructureKey": {
 				"index": "not_analyzed",
 				"store": "yes",
-				"type": "string"
+				"type": "keyword"
 			},
 			"ddmTemplateKey": {
 				"index": "not_analyzed",
 				"store": "yes",
-				"type": "string"
+				"type": "keyword"
 			},
 			"description": {
 				"index": "analyzed",
 				"store": "yes",
 				"term_vector": "with_positions_offsets",
-				"type": "string"
+				"type": "text"
 			},
 			"discussion": {
 				"index": "not_analyzed",
 				"store": "yes",
-				"type": "string"
+				"type": "keyword"
 			},
 			"displayDate": {
 				"format": "yyyyMMddHHmmss",
@@ -637,7 +637,7 @@
 			"emailAddress": {
 				"index": "not_analyzed",
 				"store": "yes",
-				"type": "string"
+				"type": "keyword"
 			},
 			"endTime": {
 				"index": "not_analyzed",
@@ -647,12 +647,12 @@
 			"entryClassName": {
 				"index": "not_analyzed",
 				"store": "yes",
-				"type": "string"
+				"type": "keyword"
 			},
 			"entryClassPK": {
 				"index": "not_analyzed",
 				"store": "yes",
-				"type": "string"
+				"type": "keyword"
 			},
 			"expirationDate": {
 				"format": "yyyyMMddHHmmss",
@@ -663,17 +663,17 @@
 			"extension": {
 				"index": "not_analyzed",
 				"store": "yes",
-				"type": "string"
+				"type": "keyword"
 			},
 			"fileEntryTypeId": {
 				"index": "not_analyzed",
 				"store": "yes",
-				"type": "string"
+				"type": "keyword"
 			},
 			"folderId": {
 				"index": "not_analyzed",
 				"store": "yes",
-				"type": "string"
+				"type": "keyword"
 			},
 			"geoLocation": {
 				"index": "not_analyzed",
@@ -684,52 +684,52 @@
 			"groupId": {
 				"index": "not_analyzed",
 				"store": "yes",
-				"type": "string"
+				"type": "keyword"
 			},
 			"groupIds": {
 				"index": "not_analyzed",
 				"store": "yes",
-				"type": "string"
+				"type": "keyword"
 			},
 			"groupRoleId": {
 				"index": "not_analyzed",
 				"store": "yes",
-				"type": "string"
+				"type": "keyword"
 			},
 			"head": {
 				"index": "not_analyzed",
 				"store": "yes",
-				"type": "string"
+				"type": "keyword"
 			},
 			"hidden": {
 				"index": "not_analyzed",
 				"store": "yes",
-				"type": "string"
+				"type": "keyword"
 			},
 			"id": {
 				"index": "not_analyzed",
 				"store": "yes",
-				"type": "string"
+				"type": "keyword"
 			},
 			"languageId": {
 				"index": "not_analyzed",
 				"store": "yes",
-				"type": "string"
+				"type": "keyword"
 			},
 			"layoutUuid": {
 				"index": "not_analyzed",
 				"store": "yes",
-				"type": "string"
+				"type": "keyword"
 			},
 			"leftOrganizationId": {
 				"index": "not_analyzed",
 				"store": "yes",
-				"type": "string"
+				"type": "keyword"
 			},
 			"mimeType": {
 				"index": "not_analyzed",
 				"store": "yes",
-				"type": "string"
+				"type": "keyword"
 			},
 			"modified": {
 				"format": "yyyyMMddHHmmss",
@@ -740,42 +740,42 @@
 			"nodeId": {
 				"index": "not_analyzed",
 				"store": "yes",
-				"type": "string"
+				"type": "keyword"
 			},
 			"organizationId": {
 				"index": "not_analyzed",
 				"store": "yes",
-				"type": "string"
+				"type": "keyword"
 			},
 			"organizationIds": {
 				"index": "not_analyzed",
 				"store": "yes",
-				"type": "string"
+				"type": "keyword"
 			},
 			"parentCategoryId": {
 				"index": "not_analyzed",
 				"store": "yes",
-				"type": "string"
+				"type": "keyword"
 			},
 			"parentCategoryIds": {
 				"index": "not_analyzed",
 				"store": "yes",
-				"type": "string"
+				"type": "keyword"
 			},
 			"parentOrganizationId": {
 				"index": "not_analyzed",
 				"store": "yes",
-				"type": "string"
+				"type": "keyword"
 			},
 			"path": {
 				"index": "not_analyzed",
 				"store": "yes",
-				"type": "string"
+				"type": "keyword"
 			},
 			"properties": {
 				"index": "not_analyzed",
 				"store": "yes",
-				"type": "string"
+				"type": "keyword"
 			},
 			"publishDate": {
 				"format": "yyyyMMddHHmmss",
@@ -786,16 +786,16 @@
 			"readCount": {
 				"index": "not_analyzed",
 				"store": "yes",
-				"type": "string"
+				"type": "keyword"
 			},
 			"recordSetId": {
 				"index": "not_analyzed",
 				"store": "yes",
-				"type": "string"
+				"type": "keyword"
 			},
 			"removedByUser": {
 				"index": "not_analyzed",
-				"type": "string"
+				"type": "keyword"
 			},
 			"removedDate": {
 				"format": "yyyyMMddHHmmss",
@@ -806,113 +806,113 @@
 			"rightOrganizationId": {
 				"index": "not_analyzed",
 				"store": "yes",
-				"type": "string"
+				"type": "keyword"
 			},
 			"roleId": {
 				"index": "not_analyzed",
 				"store": "yes",
-				"type": "string"
+				"type": "keyword"
 			},
 			"roleIds": {
 				"index": "not_analyzed",
 				"store": "yes",
-				"type": "string"
+				"type": "keyword"
 			},
 			"rootEntryClassName": {
 				"index": "not_analyzed",
 				"store": "yes",
-				"type": "string"
+				"type": "keyword"
 			},
 			"rootEntryClassPK": {
 				"index": "not_analyzed",
 				"store": "yes",
-				"type": "string"
+				"type": "keyword"
 			},
 			"scopeGroupId": {
 				"index": "not_analyzed",
 				"store": "yes",
-				"type": "string"
+				"type": "keyword"
 			},
 			"screenName": {
 				"index": "not_analyzed",
 				"store": "yes",
-				"type": "string"
+				"type": "keyword"
 			},
 			"size": {
 				"index": "not_analyzed",
 				"store": "yes",
-				"type": "string"
+				"type": "keyword"
 			},
 			"status": {
 				"index": "not_analyzed",
 				"store": "yes",
-				"type": "string"
+				"type": "keyword"
 			},
 			"subtitle": {
 				"index": "analyzed",
 				"store": "yes",
-				"type": "string"
+				"type": "text"
 			},
 			"teamIds": {
 				"index": "not_analyzed",
 				"store": "yes",
-				"type": "string"
+				"type": "keyword"
 			},
 			"threadId": {
 				"index": "not_analyzed",
 				"store": "yes",
-				"type": "string"
+				"type": "keyword"
 			},
 			"title": {
 				"index": "analyzed",
 				"store": "yes",
 				"term_vector": "with_positions_offsets",
-				"type": "string"
+				"type": "text"
 			},
 			"treePath": {
 				"index": "not_analyzed",
 				"store": "yes",
-				"type": "string"
+				"type": "keyword"
 			},
 			"type": {
 				"index": "not_analyzed",
 				"store": "yes",
-				"type": "string"
+				"type": "keyword"
 			},
 			"uid": {
 				"index": "not_analyzed",
 				"store": "yes",
-				"type": "string"
+				"type": "keyword"
 			},
 			"userGroupId": {
 				"index": "not_analyzed",
 				"store": "yes",
-				"type": "string"
+				"type": "keyword"
 			},
 			"userGroupIds": {
 				"index": "not_analyzed",
 				"store": "yes",
-				"type": "string"
+				"type": "keyword"
 			},
 			"userId": {
 				"index": "not_analyzed",
 				"store": "yes",
-				"type": "string"
+				"type": "keyword"
 			},
 			"userName": {
 				"index": "not_analyzed",
 				"store": "yes",
-				"type": "string"
+				"type": "keyword"
 			},
 			"version": {
 				"index": "not_analyzed",
 				"store": "yes",
-				"type": "string"
+				"type": "keyword"
 			},
 			"visible": {
 				"index": "not_analyzed",
 				"store": "yes",
-				"type": "string"
+				"type": "keyword"
 			}
 		}
 	}

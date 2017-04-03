@@ -5,7 +5,7 @@
 			"index": "analyzed",
 			"store": "yes",
 			"term_vector": "with_positions_offsets",
-			"type": "string"
+			"type": "text"
 		}
 	}
 }
