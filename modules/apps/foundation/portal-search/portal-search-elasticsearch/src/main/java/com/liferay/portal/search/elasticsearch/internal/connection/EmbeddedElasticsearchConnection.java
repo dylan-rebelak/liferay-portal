@@ -224,7 +224,7 @@ public class EmbeddedElasticsearchConnection
 			"path.work", SystemProperties.get(SystemProperties.TMP_DIR));
 	}
 
-	protected void configurePlugin(String name, Settings settings) {
+/*	protected void configurePlugin(String name, Settings settings) {
 		EmbeddedElasticsearchPluginManager embeddedElasticsearchPluginManager =
 			new EmbeddedElasticsearchPluginManager(
 				name, settings.get("path.plugins"),
@@ -238,9 +238,9 @@ public class EmbeddedElasticsearchConnection
 			throw new RuntimeException(
 				"Unable to install " + name + " plugin", ioe);
 		}
-	}
+	}*/
 
-	protected void configurePlugins() {
+/*	protected void configurePlugins() {
 		Settings settings = settingsBuilder.build();
 
 		String[] plugins = {
@@ -251,7 +251,7 @@ public class EmbeddedElasticsearchConnection
 		for (String plugin : plugins) {
 			configurePlugin(plugin, settings);
 		}
-	}
+	}*/
 
 	@Override
 	protected Client createClient() {
@@ -346,7 +346,7 @@ public class EmbeddedElasticsearchConnection
 
 		configurePaths();
 
-		configurePlugins();
+/*		configurePlugins();*/
 
 		if (PortalRunMode.isTestMode()) {
 			settingsBuilder.put("index.refresh_interval", "1ms");
