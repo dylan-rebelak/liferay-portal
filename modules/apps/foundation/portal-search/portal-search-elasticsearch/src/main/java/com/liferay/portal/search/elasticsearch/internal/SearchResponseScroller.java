@@ -38,6 +38,7 @@ import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.search.Scroll;
 import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.SearchHits;
+import org.elasticsearch.search.sort.SortOrder;
 
 /**
  * @author Michael C. Han
@@ -84,9 +85,10 @@ public class SearchResponseScroller {
 		SearchRequestBuilder searchRequestBuilder = _client.prepareSearch(
 			_indexNameBuilder.getIndexName(_searchContext.getCompanyId()));
 
-		searchRequestBuilder.addField(Field.UID);
+		searchRequestBuilder.addStoredField(Field.UID);
 		searchRequestBuilder.setQuery(_queryBuilder);
-		searchRequestBuilder.setSearchType(SearchType.SCAN);
+		//TODO Check if using "_doc" is correct
+		searchRequestBuilder.addSort("_doc", SortOrder.ASC);
 		searchRequestBuilder.setTypes(_types);
 
 		Scroll scroll = new Scroll(_scrollTimeValue);

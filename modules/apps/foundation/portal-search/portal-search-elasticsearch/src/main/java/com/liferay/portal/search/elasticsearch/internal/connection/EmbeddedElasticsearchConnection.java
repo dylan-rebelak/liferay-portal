@@ -42,6 +42,7 @@ import org.elasticsearch.client.Client;
 import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.node.Node;
 
+import org.elasticsearch.node.NodeValidationException;
 import org.jboss.netty.util.internal.ByteBufferUtil;
 
 import org.osgi.service.component.annotations.Activate;
@@ -85,7 +86,12 @@ public class EmbeddedElasticsearchConnection
 			}
 		}
 
-		_node.close();
+		try {
+			_node.close();
+		}
+		catch (IOException e) {
+			e.printStackTrace();
+		}
 
 		_node = null;
 	}
@@ -274,7 +280,12 @@ public class EmbeddedElasticsearchConnection
 
 		_node = createNode(settingsBuilder.build());
 
-		_node.start();
+		try {
+			_node.start();
+		}
+		catch (NodeValidationException e) {
+			e.printStackTrace();
+		}
 
 		Client client = _node.client();
 
