@@ -36,6 +36,7 @@ import java.net.InetAddress;
 
 import java.util.Map;
 
+import io.netty.buffer.ByteBufUtil;
 import org.apache.commons.lang.time.StopWatch;
 
 import org.elasticsearch.client.Client;
@@ -43,7 +44,6 @@ import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.node.Node;
 
 import org.elasticsearch.node.NodeValidationException;
-import org.jboss.netty.util.internal.ByteBufferUtil;
 
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
@@ -74,12 +74,12 @@ public class EmbeddedElasticsearchConnection
 		}
 
 		try {
-			Class.forName(ByteBufferUtil.class.getName());
+			Class.forName(ByteBufUtil.class.getName());
 		}
 		catch (ClassNotFoundException cnfe) {
 			if (_log.isWarnEnabled()) {
 				_log.warn(
-					"Unable to preload " + ByteBufferUtil.class +
+					"Unable to preload " + ByteBufUtil.class +
 						" to prevent Netty shutdown concurrent class loading " +
 							"interruption issue",
 					cnfe);
