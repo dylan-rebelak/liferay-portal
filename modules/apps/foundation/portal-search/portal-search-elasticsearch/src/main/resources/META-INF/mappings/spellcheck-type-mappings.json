@@ -4,7 +4,7 @@
 			{
 				"template_": {
 					"mapping": {
-						"index": "false",
+						"index": "true",
 						"index_options": "docs",
 						"omit_norms": "yes",
 						"type": "keyword"
@@ -26,21 +26,21 @@
 		],
 		"properties": {
 			"companyId": {
-				"index": "false",
+				"index": "true",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"groupId": {
-				"index": "false",
+				"index": "true",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"priority": {
-				"index": "false",
+				"index": "true",
 				"type": "float"
 			},
 			"uid": {
-				"index": "false",
+				"index": "true",
 				"store": "yes",
 				"type": "keyword"
 			}

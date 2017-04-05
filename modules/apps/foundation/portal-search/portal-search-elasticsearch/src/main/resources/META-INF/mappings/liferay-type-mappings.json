@@ -5,7 +5,7 @@
 			{
 				"template_long_sortable": {
 					"mapping": {
-						"index": "false",
+						"index": "true",
 						"store": "true",
 						"type": "long"
 					},
@@ -16,7 +16,7 @@
 			{
 				"template_string_sortable": {
 					"mapping": {
-						"index": "false",
+						"index": "true",
 						"store": "true",
 						"type": "keyword"
 					},
@@ -27,8 +27,7 @@
 			{
 				"template_geolocation": {
 					"mapping": {
-						"index": "false",
-						"lat_lon": true,
+						"index": "true",
 						"store": true,
 						"type": "geo_point"
 					},
@@ -50,7 +49,7 @@
 			{
 				"template_ddm_keyword": {
 					"mapping": {
-						"index": "false",
+						"index": "true",
 						"store": "true",
 						"type": "keyword"
 					},
@@ -63,7 +62,7 @@
 					"mapping": {
 						"analyzer" : "keyword_lowercase",
 						"store": "true",
-						"type": "keyword"
+						"type": "text"
 					},
 					"match": "expando__keyword__*",
 					"match_mapping_type": "string"
@@ -513,32 +512,32 @@
 		],
 		"properties": {
 			"ancestorOrganizationIds": {
-				"index": "false",
+				"index": "true",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"articleId": {
 				"analyzer": "keyword_lowercase",
 				"store": "yes",
-				"type": "keyword"
+				"type": "text"
 			},
 			"assetCategoryId": {
-				"index": "false",
+				"index": "true",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"assetCategoryIds": {
-				"index": "false",
+				"index": "true",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"assetTagId": {
-				"index": "false",
+				"index": "true",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"assetTagIds": {
-				"index": "false",
+				"index": "true",
 				"store": "yes",
 				"type": "keyword"
 			},
@@ -547,40 +546,40 @@
 				"search_analyzer" : "asset_tag_name",
 				"store": "yes",
 				"term_vector": "with_positions_offsets",
-				"type": "keyword"
+				"type": "text"
 			},
 			"assetVocabularyId": {
-				"index": "false",
+				"index": "true",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"assetVocabularyIds": {
-				"index": "false",
+				"index": "true",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"classTypeId": {
-				"index": "false",
+				"index": "true",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"companyId": {
-				"index": "false",
+				"index": "true",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"configurationModelAttributeName": {
-				"index": "false",
+				"index": "true",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"configurationModelFactoryPid": {
-				"index": "false",
+				"index": "true",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"configurationModelId": {
-				"index": "false",
+				"index": "true",
 				"store": "yes",
 				"type": "keyword"
 			},
@@ -592,12 +591,12 @@
 			},
 			"createDate": {
 				"format": "yyyyMMddHHmmss",
-				"index": "false",
+				"index": "true",
 				"store": "yes",
 				"type": "date"
 			},
 			"dataRepositoryId": {
-				"index": "false",
+				"index": "true",
 				"store": "yes",
 				"type": "keyword"
 			},
@@ -608,12 +607,12 @@
 				"type": "text"
 			},
 			"ddmStructureKey": {
-				"index": "false",
+				"index": "true",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"ddmTemplateKey": {
-				"index": "false",
+				"index": "true",
 				"store": "yes",
 				"type": "keyword"
 			},
@@ -624,227 +623,226 @@
 				"type": "text"
 			},
 			"discussion": {
-				"index": "false",
+				"index": "true",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"displayDate": {
 				"format": "yyyyMMddHHmmss",
-				"index": "false",
+				"index": "true",
 				"store": "yes",
 				"type": "date"
 			},
 			"emailAddress": {
-				"index": "false",
+				"index": "true",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"endTime": {
-				"index": "false",
+				"index": "true",
 				"store": "yes",
 				"type": "long"
 			},
 			"entryClassName": {
-				"index": "false",
+				"index": "true",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"entryClassPK": {
-				"index": "false",
+				"index": "true",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"expirationDate": {
 				"format": "yyyyMMddHHmmss",
-				"index": "false",
+				"index": "true",
 				"store": "yes",
 				"type": "date"
 			},
 			"extension": {
-				"index": "false",
+				"index": "true",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"fileEntryTypeId": {
-				"index": "false",
+				"index": "true",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"folderId": {
-				"index": "false",
+				"index": "true",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"geoLocation": {
-				"index": "false",
-				"lat_lon": true,
+				"index": "true",
 				"store": "yes",
 				"type": "geo_point"
 			},
 			"groupId": {
-				"index": "false",
+				"index": "true",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"groupIds": {
-				"index": "false",
+				"index": "true",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"groupRoleId": {
-				"index": "false",
+				"index": "true",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"head": {
-				"index": "false",
+				"index": "true",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"hidden": {
-				"index": "false",
+				"index": "true",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"id": {
-				"index": "false",
+				"index": "true",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"languageId": {
-				"index": "false",
+				"index": "true",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"layoutUuid": {
-				"index": "false",
+				"index": "true",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"leftOrganizationId": {
-				"index": "false",
+				"index": "true",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"mimeType": {
-				"index": "false",
+				"index": "true",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"modified": {
 				"format": "yyyyMMddHHmmss",
-				"index": "false",
+				"index": "true",
 				"store": "yes",
 				"type": "date"
 			},
 			"nodeId": {
-				"index": "false",
+				"index": "true",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"organizationId": {
-				"index": "false",
+				"index": "true",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"organizationIds": {
-				"index": "false",
+				"index": "true",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"parentCategoryId": {
-				"index": "false",
+				"index": "true",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"parentCategoryIds": {
-				"index": "false",
+				"index": "true",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"parentOrganizationId": {
-				"index": "false",
+				"index": "true",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"path": {
-				"index": "false",
+				"index": "true",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"properties": {
-				"index": "false",
+				"index": "true",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"publishDate": {
 				"format": "yyyyMMddHHmmss",
-				"index": "false",
+				"index": "true",
 				"store": "yes",
 				"type": "date"
 			},
 			"readCount": {
-				"index": "false",
+				"index": "true",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"recordSetId": {
-				"index": "false",
+				"index": "true",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"removedByUser": {
-				"index": "false",
+				"index": "true",
 				"type": "keyword"
 			},
 			"removedDate": {
 				"format": "yyyyMMddHHmmss",
-				"index": "false",
+				"index": "true",
 				"store": "yes",
 				"type": "date"
 			},
 			"rightOrganizationId": {
-				"index": "false",
+				"index": "true",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"roleId": {
-				"index": "false",
+				"index": "true",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"roleIds": {
-				"index": "false",
+				"index": "true",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"rootEntryClassName": {
-				"index": "false",
+				"index": "true",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"rootEntryClassPK": {
-				"index": "false",
+				"index": "true",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"scopeGroupId": {
-				"index": "false",
+				"index": "true",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"screenName": {
-				"index": "false",
+				"index": "true",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"size": {
-				"index": "false",
+				"index": "true",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"status": {
-				"index": "false",
+				"index": "true",
 				"store": "yes",
 				"type": "keyword"
 			},
@@ -854,12 +852,12 @@
 				"type": "text"
 			},
 			"teamIds": {
-				"index": "false",
+				"index": "true",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"threadId": {
-				"index": "false",
+				"index": "true",
 				"store": "yes",
 				"type": "keyword"
 			},
@@ -870,47 +868,47 @@
 				"type": "text"
 			},
 			"treePath": {
-				"index": "false",
+				"index": "true",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"type": {
-				"index": "false",
+				"index": "true",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"uid": {
-				"index": "false",
+				"index": "true",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"userGroupId": {
-				"index": "false",
+				"index": "true",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"userGroupIds": {
-				"index": "false",
+				"index": "true",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"userId": {
-				"index": "false",
+				"index": "true",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"userName": {
-				"index": "false",
+				"index": "true",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"version": {
-				"index": "false",
+				"index": "true",
 				"store": "yes",
 				"type": "keyword"
 			},
 			"visible": {
-				"index": "false",
+				"index": "true",
 				"store": "yes",
 				"type": "keyword"
 			}
