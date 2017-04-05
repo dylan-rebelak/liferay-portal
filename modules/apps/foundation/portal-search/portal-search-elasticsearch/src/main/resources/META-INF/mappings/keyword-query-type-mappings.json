@@ -7,7 +7,7 @@
 						"index": "false",
 						"index_options": "docs",
 						"omit_norms": "yes",
-						"type": "string"
+						"type": "keyword"
 					},
 					"match": "*",
 					"match_mapping_type": "string"
@@ -17,7 +17,7 @@
 				"template_keywordSearch": {
 					"mapping": {
 						"index": "true",
-						"type": "string"
+						"type": "text"
 					},
 					"match": "keywordSearch_*",
 					"match_mapping_type": "string"
@@ -28,12 +28,12 @@
 			"companyId": {
 				"index": "false",
 				"store": "yes",
-				"type": "string"
+				"type": "keyword"
 			},
 			"groupId": {
 				"index": "false",
 				"store": "yes",
-				"type": "string"
+				"type": "keyword"
 			},
 			"priority": {
 				"index": "false",
@@ -42,7 +42,7 @@
 			"uid": {
 				"index": "false",
 				"store": "yes",
-				"type": "string"
+				"type": "keyword"
 			}
 		}
 	}
