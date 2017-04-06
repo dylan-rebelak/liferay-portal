@@ -244,10 +244,8 @@ public class ElasticsearchIndexSearcher extends BaseIndexSearcher {
 	}
 
 	protected void addHighlightedField(
-		SearchRequestBuilder searchRequestBuilder, QueryConfig queryConfig,
+		SearchRequestBuilder searchRequestBuilder, HighlightBuilder highlightBuilder, QueryConfig queryConfig,
 		String fieldName) {
-
-		HighlightBuilder highlightBuilder = new HighlightBuilder();
 
 		highlightBuilder.field(
 			fieldName, queryConfig.getHighlightFragmentSize(),
@@ -270,12 +268,12 @@ public class ElasticsearchIndexSearcher extends BaseIndexSearcher {
 			return;
 		}
 
+		HighlightBuilder highlightBuilder = new HighlightBuilder();
+
 		for (String highlightFieldName : queryConfig.getHighlightFieldNames()) {
 			addHighlightedField(
-				searchRequestBuilder, queryConfig, highlightFieldName);
+				searchRequestBuilder, highlightBuilder, queryConfig, highlightFieldName);
 		}
-
-		HighlightBuilder highlightBuilder = new HighlightBuilder();
 
 		highlightBuilder.postTags(HighlightUtil.HIGHLIGHT_TAG_CLOSE);
 		highlightBuilder.preTags(HighlightUtil.HIGHLIGHT_TAG_OPEN);

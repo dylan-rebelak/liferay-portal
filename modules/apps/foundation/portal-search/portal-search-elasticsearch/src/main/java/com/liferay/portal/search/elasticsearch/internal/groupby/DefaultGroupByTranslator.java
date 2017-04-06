@@ -73,10 +73,8 @@ public class DefaultGroupByTranslator implements GroupByTranslator {
 	}
 
 	protected void addHighlightedField(
-		TopHitsAggregationBuilder topHitsAggregationBuilder, QueryConfig queryConfig,
+		TopHitsAggregationBuilder topHitsAggregationBuilder, HighlightBuilder highlightBuilder, QueryConfig queryConfig,
 		String fieldName) {
-
-		HighlightBuilder highlightBuilder = new HighlightBuilder();
 
 		highlightBuilder.field(
 			fieldName, queryConfig.getHighlightFragmentSize(),
@@ -99,12 +97,12 @@ public class DefaultGroupByTranslator implements GroupByTranslator {
 			return;
 		}
 
+		HighlightBuilder highlightBuilder = new HighlightBuilder();
+
 		for (String highlightFieldName : queryConfig.getHighlightFieldNames()) {
 			addHighlightedField(
-				topHitsAggregationBuilder, queryConfig, highlightFieldName);
+				topHitsAggregationBuilder, highlightBuilder, queryConfig, highlightFieldName);
 		}
-
-		HighlightBuilder highlightBuilder = new HighlightBuilder();
 
 		highlightBuilder.postTags(HighlightUtil.HIGHLIGHT_TAG_CLOSE);
 		highlightBuilder.preTags(HighlightUtil.HIGHLIGHT_TAG_OPEN);
