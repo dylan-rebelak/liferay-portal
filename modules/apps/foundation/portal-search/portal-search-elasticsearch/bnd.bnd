@@ -39,6 +39,7 @@ Import-Package:\
 	!org.apache.commons.lang.*,\
 	!org.apache.commons.csv.*,\
 	!org.apache.commons.compress.*,\
+	!org.apache.http.*,\
 	!org.apache.ivy.*,\
 	!org.apache.lucene.expressions.*,\
 	!org.apache.lucene.geo3d.*,\
@@ -73,9 +74,6 @@ Import-Package:\
 	!javassist.*,\
 	!joptsimple.*,\
 	!org.apache.lucene.spatial.*,\
-	!org.elasticsearch.index.reindex.*,\
-	!org.elasticsearch.percolator.*,\
-	!org.elasticsearch.script.mustache.*,\
 	!com.lmax.disruptor.*,\
 	!org.apache.kafka.clients.producer.*,\
 	!org.zeromq.*,\
