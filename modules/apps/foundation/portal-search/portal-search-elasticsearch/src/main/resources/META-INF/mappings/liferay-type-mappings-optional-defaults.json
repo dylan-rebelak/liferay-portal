@@ -5,7 +5,7 @@
 				"mapping": {
 					"index": "true",
 					"store": "true",
-					"type": "text"
+					"type": "keyword"
 				},
 				"match": "*",
 				"match_mapping_type": "string"
