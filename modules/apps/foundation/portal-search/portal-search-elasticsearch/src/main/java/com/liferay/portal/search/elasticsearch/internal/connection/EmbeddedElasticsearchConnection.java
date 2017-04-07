@@ -34,6 +34,7 @@ import java.io.IOException;
 
 import java.net.InetAddress;
 
+import java.util.Collections;
 import java.util.Map;
 
 import io.netty.buffer.ByteBufUtil;
@@ -45,6 +46,9 @@ import org.elasticsearch.node.Node;
 
 import org.elasticsearch.node.NodeValidationException;
 
+import org.elasticsearch.node.internal.InternalSettingsPreparer;
+import org.elasticsearch.plugins.Plugin;
+import org.elasticsearch.transport.Netty4Plugin;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Deactivate;
@@ -136,7 +140,7 @@ public class EmbeddedElasticsearchConnection
 			"cluster.name", elasticsearchConfiguration.clusterName());
 		settingsBuilder.put(
 			"cluster.routing.allocation.disk.threshold_enabled", false);
-		settingsBuilder.put("discovery.zen.ping.multicast.enabled", false);
+		settingsBuilder.put("discovery.type", "zen");
 	}
 
 	protected void configureHttp() {
@@ -215,13 +219,8 @@ public class EmbeddedElasticsearchConnection
 		settingsBuilder.put(
 			"path.logs", props.get(PropsKeys.LIFERAY_HOME) + "/logs");
 		settingsBuilder.put(
-			"path.plugins",
-			props.get(PropsKeys.LIFERAY_HOME) + "/data/elasticsearch/plugins");
-		settingsBuilder.put(
 			"path.repo",
 			props.get(PropsKeys.LIFERAY_HOME) + "/data/elasticsearch/repo");
-		settingsBuilder.put(
-			"path.work", SystemProperties.get(SystemProperties.TMP_DIR));
 	}
 
 /*	protected void configurePlugin(String name, Settings settings) {
@@ -311,10 +310,16 @@ public class EmbeddedElasticsearchConnection
 		thread.setContextClassLoader(clazz.getClassLoader());
 
 		try {
-			return new Node(settings);
+			return new PluginNode(settings);
 		}
 		finally {
 			thread.setContextClassLoader(contextClassLoader);
+		}
+	}
+
+	static class PluginNode extends Node {
+		public PluginNode(final Settings settings) {
+			super(InternalSettingsPreparer.prepareEnvironment(settings, null), Collections.<Class<? extends Plugin>>singletonList(Netty4Plugin.class));
 		}
 	}
 
@@ -334,9 +339,6 @@ public class EmbeddedElasticsearchConnection
 
 		configureHttp();
 
-		settingsBuilder.put("index.number_of_replicas", 0);
-		settingsBuilder.put("index.number_of_shards", 1);
-
 		configureNetworking();
 
 		settingsBuilder.put("node.master", true);
@@ -347,12 +349,6 @@ public class EmbeddedElasticsearchConnection
 		configurePaths();
 
 /*		configurePlugins();*/
-
-		if (PortalRunMode.isTestMode()) {
-			settingsBuilder.put("index.refresh_interval", "1ms");
-			settingsBuilder.put("index.translog.flush_threshold_ops", "1");
-			settingsBuilder.put("index.translog.interval", "1ms");
-		}
 	}
 
 	@Override
