@@ -55,6 +55,7 @@ public class DefaultRangeBuilder
 
 	public DefaultRangeBuilder addUnboundedFrom(String key, String from) {
 		ranges.add(new RangeAggregator.Range(key, from, null));
+
 		return this;
 	}
 
@@ -72,6 +73,11 @@ public class DefaultRangeBuilder
 		_format = format;
 
 		return this;
+	}
+
+	@Override
+	public String getType() {
+		return "range";
 	}
 
 	public boolean hasRanges() {
@@ -102,14 +108,10 @@ public class DefaultRangeBuilder
 
 		return new RangeAggregatorFactory(
 			name, config,
-			ranges.toArray(new RangeAggregator.Range[ranges.size()]),
-			keyed, rangeFactory, context, parent, factoriesBuilder, metaData);
+			ranges.toArray(new RangeAggregator.Range[ranges.size()]), keyed,
+			rangeFactory, context, parent, factoriesBuilder, metaData);
 	}
 
 	private String _format;
 
-	@Override
-	public String getType() {
-		return "range";
-	}
 }

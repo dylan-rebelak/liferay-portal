@@ -300,7 +300,8 @@ public class EmbeddedElasticsearchConnection
 	}
 
 	protected EmbeddedElasticsearchPluginManager
-	createEmbeddedElasticsearchPluginManager(String name, Settings settings) {
+		createEmbeddedElasticsearchPluginManager(
+			String name, Settings settings) {
 
 		return new EmbeddedElasticsearchPluginManager(
 			name,
@@ -357,13 +358,13 @@ public class EmbeddedElasticsearchConnection
 		EmbeddedElasticsearchPluginManager embeddedElasticsearchPluginManager =
 			createEmbeddedElasticsearchPluginManager(name, settings);
 
-			try {
-				embeddedElasticsearchPluginManager.removeObsoletePlugin();
-			}
+		try {
+			embeddedElasticsearchPluginManager.removeObsoletePlugin();
+		}
 		catch (IOException ioe) {
-				throw new RuntimeException(
-					"Unable to remove " + name + " plugin", ioe);
-			}
+			throw new RuntimeException(
+				"Unable to remove " + name + " plugin", ioe);
+		}
 	}
 
 	@Override

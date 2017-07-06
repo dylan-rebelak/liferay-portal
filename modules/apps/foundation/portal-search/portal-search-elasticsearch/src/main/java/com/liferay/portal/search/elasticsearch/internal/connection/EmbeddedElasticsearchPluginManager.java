@@ -64,17 +64,17 @@ public class EmbeddedElasticsearchPluginManager {
 		PluginManager pluginManager =
 			_pluginManagerFactory.createPluginManager();
 
-			Optional<Path> pathOptional = getInstalledPluginPath(pluginManager);
+		Optional<Path> pathOptional = getInstalledPluginPath(pluginManager);
 
-			if (!pathOptional.isPresent()) {
-				return;
-			}
+		if (!pathOptional.isPresent()) {
+			return;
+		}
 
-			if (pluginManager.isCurrentVersion(pathOptional.get())) {
-				return;
-			}
+		if (pluginManager.isCurrentVersion(pathOptional.get())) {
+			return;
+		}
 
-			pluginManager.removePlugin(_pluginName, getTerminal());
+		pluginManager.removePlugin(_pluginName, getTerminal());
 	}
 
 	protected PluginZip createPluginZip() throws IOException {
@@ -103,21 +103,20 @@ public class EmbeddedElasticsearchPluginManager {
 	protected Optional<Path> getInstalledPluginPath(PluginManager pluginManager)
 		throws IOException {
 
-			Path[] paths = pluginManager.getInstalledPluginsPaths();
+		Path[] paths = pluginManager.getInstalledPluginsPaths();
 
-			if (paths != null) {
-				for (Path path : paths) {
-						if (path.endsWith(_pluginName)) {
-							return Optional.of(path);
-							}
-					}
+		if (paths != null) {
+			for (Path path : paths) {
+				if (path.endsWith(_pluginName)) {
+					return Optional.of(path);
+				}
 			}
+		}
 
-			return Optional.empty();
+		return Optional.empty();
 	}
 
 	protected Terminal getTerminal() {
-
 		Terminal terminal = Terminal.DEFAULT;
 
 		terminal.setVerbosity(Verbosity.SILENT);
