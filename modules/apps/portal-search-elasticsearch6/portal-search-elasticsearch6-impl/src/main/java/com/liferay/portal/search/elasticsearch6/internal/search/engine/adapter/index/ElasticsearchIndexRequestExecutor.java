@@ -16,17 +16,27 @@ package com.liferay.portal.search.elasticsearch6.internal.search.engine.adapter.
 
 import com.liferay.portal.search.engine.adapter.index.AnalyzeIndexRequest;
 import com.liferay.portal.search.engine.adapter.index.AnalyzeIndexResponse;
+import com.liferay.portal.search.engine.adapter.index.CreateIndexRequest;
+import com.liferay.portal.search.engine.adapter.index.CreateIndexResponse;
+import com.liferay.portal.search.engine.adapter.index.DeleteIndexRequest;
+import com.liferay.portal.search.engine.adapter.index.DeleteIndexResponse;
 import com.liferay.portal.search.engine.adapter.index.FlushIndexRequest;
 import com.liferay.portal.search.engine.adapter.index.FlushIndexResponse;
 import com.liferay.portal.search.engine.adapter.index.GetFieldMappingIndexRequest;
 import com.liferay.portal.search.engine.adapter.index.GetFieldMappingIndexResponse;
+import com.liferay.portal.search.engine.adapter.index.GetIndexIndexRequest;
+import com.liferay.portal.search.engine.adapter.index.GetIndexIndexResponse;
 import com.liferay.portal.search.engine.adapter.index.GetMappingIndexRequest;
 import com.liferay.portal.search.engine.adapter.index.GetMappingIndexResponse;
 import com.liferay.portal.search.engine.adapter.index.IndexRequestExecutor;
+import com.liferay.portal.search.engine.adapter.index.IndicesExistsIndexRequest;
+import com.liferay.portal.search.engine.adapter.index.IndicesExistsIndexResponse;
 import com.liferay.portal.search.engine.adapter.index.PutMappingIndexRequest;
 import com.liferay.portal.search.engine.adapter.index.PutMappingIndexResponse;
 import com.liferay.portal.search.engine.adapter.index.RefreshIndexRequest;
 import com.liferay.portal.search.engine.adapter.index.RefreshIndexResponse;
+import com.liferay.portal.search.engine.adapter.index.UpdateIndexSettingsIndexRequest;
+import com.liferay.portal.search.engine.adapter.index.UpdateIndexSettingsIndexResponse;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -48,6 +58,20 @@ public class ElasticsearchIndexRequestExecutor implements IndexRequestExecutor {
 	}
 
 	@Override
+	public CreateIndexResponse executeIndexRequest(
+		CreateIndexRequest createIndexRequest) {
+
+		return createIndexRequestExecutor.execute(createIndexRequest);
+	}
+
+	@Override
+	public DeleteIndexResponse executeIndexRequest(
+		DeleteIndexRequest deleteIndexRequest) {
+
+		return deleteIndexRequestExecutor.execute(deleteIndexRequest);
+	}
+
+	@Override
 	public FlushIndexResponse executeIndexRequest(
 		FlushIndexRequest flushIndexRequest) {
 
@@ -63,10 +87,26 @@ public class ElasticsearchIndexRequestExecutor implements IndexRequestExecutor {
 	}
 
 	@Override
+	public GetIndexIndexResponse executeIndexRequest(
+		GetIndexIndexRequest getIndexIndexRequest) {
+
+		return _getIndexIndexRequestExecutor.execute(
+			getIndexIndexRequest);
+	}
+
+	@Override
 	public GetMappingIndexResponse executeIndexRequest(
 		GetMappingIndexRequest getMappingIndexRequest) {
 
 		return getMappingIndexRequestExecutor.execute(getMappingIndexRequest);
+	}
+
+	@Override
+	public IndicesExistsIndexResponse executeIndexRequest(
+		IndicesExistsIndexRequest indicesExistsIndexRequest) {
+
+		return indexExistsIndexRequestExecutor.execute(
+			indicesExistsIndexRequest);
 	}
 
 	@Override
@@ -83,8 +123,22 @@ public class ElasticsearchIndexRequestExecutor implements IndexRequestExecutor {
 		return refreshIndexRequestExecutor.execute(refreshIndexRequest);
 	}
 
+	@Override
+	public UpdateIndexSettingsIndexResponse executeIndexRequest(
+		UpdateIndexSettingsIndexRequest updateIndexSettingsIndexRequest) {
+
+		return updateIndexSettingsIndexRequestExecutor.execute(
+			updateIndexSettingsIndexRequest);
+	}
+
 	@Reference
 	protected AnalyzeIndexRequestExecutor analyzeIndexRequestExecutor;
+
+	@Reference
+	protected CreateIndexRequestExecutor createIndexRequestExecutor;
+
+	@Reference
+	protected DeleteIndexRequestExecutor deleteIndexRequestExecutor;
 
 	@Reference
 	protected FlushIndexRequestExecutor flushIndexRequestExecutor;
@@ -94,12 +148,23 @@ public class ElasticsearchIndexRequestExecutor implements IndexRequestExecutor {
 		getFieldMappingIndexRequestExecutor;
 
 	@Reference
+	protected GetIndexIndexRequestExecutor
+		_getIndexIndexRequestExecutor;
+
+	@Reference
 	protected GetMappingIndexRequestExecutor getMappingIndexRequestExecutor;
+
+	@Reference
+	protected IndexExistsIndexRequestExecutor indexExistsIndexRequestExecutor;
 
 	@Reference
 	protected PutMappingIndexRequestExecutor putMappingIndexRequestExecutor;
 
 	@Reference
 	protected RefreshIndexRequestExecutor refreshIndexRequestExecutor;
+
+	@Reference
+	protected UpdateIndexSettingsIndexRequestExecutor
+		updateIndexSettingsIndexRequestExecutor;
 
 }
