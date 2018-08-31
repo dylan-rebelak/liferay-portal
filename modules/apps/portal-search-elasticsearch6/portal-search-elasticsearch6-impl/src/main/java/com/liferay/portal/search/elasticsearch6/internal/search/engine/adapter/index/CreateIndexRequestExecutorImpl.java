@@ -21,6 +21,7 @@ import com.liferay.portal.search.engine.adapter.index.CreateIndexResponse;
 import org.elasticsearch.action.admin.indices.create.CreateIndexAction;
 import org.elasticsearch.action.admin.indices.create.CreateIndexRequestBuilder;
 import org.elasticsearch.client.Client;
+
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
@@ -38,9 +39,9 @@ public class CreateIndexRequestExecutorImpl
 
 		org.elasticsearch.action.admin.indices.create.CreateIndexResponse
 			elasticsearchCreateIndexResponse = createIndexRequestBuilder.get();
-		
+
 		CreateIndexResponse createIndexResponse = new CreateIndexResponse();
-		
+
 		return createIndexResponse;
 	}
 

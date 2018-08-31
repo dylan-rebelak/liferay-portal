@@ -90,8 +90,7 @@ public class ElasticsearchIndexRequestExecutor implements IndexRequestExecutor {
 	public GetIndexIndexResponse executeIndexRequest(
 		GetIndexIndexRequest getIndexIndexRequest) {
 
-		return _getIndexIndexRequestExecutor.execute(
-			getIndexIndexRequest);
+		return getIndexIndexRequestExecutor.execute(getIndexIndexRequest);
 	}
 
 	@Override
@@ -148,8 +147,7 @@ public class ElasticsearchIndexRequestExecutor implements IndexRequestExecutor {
 		getFieldMappingIndexRequestExecutor;
 
 	@Reference
-	protected GetIndexIndexRequestExecutor
-		_getIndexIndexRequestExecutor;
+	protected GetIndexIndexRequestExecutor getIndexIndexRequestExecutor;
 
 	@Reference
 	protected GetMappingIndexRequestExecutor getMappingIndexRequestExecutor;

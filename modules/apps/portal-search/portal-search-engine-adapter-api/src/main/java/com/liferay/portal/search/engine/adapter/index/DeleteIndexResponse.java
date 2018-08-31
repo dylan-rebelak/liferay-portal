@@ -14,19 +14,22 @@
 
 package com.liferay.portal.search.engine.adapter.index;
 
+import aQute.bnd.annotation.ProviderType;
+
 /**
  * @author Michael C. Han
  */
+@ProviderType
 public class DeleteIndexResponse implements IndexResponse {
 
-	public DeleteIndexResponse(boolean isAcknowledged) {
-		_isAcknowledged = isAcknowledged;
+	public DeleteIndexResponse(boolean acknowledged) {
+		_acknowledged = acknowledged;
 	}
 
 	public boolean isAcknowledged() {
-		return _isAcknowledged;
+		return _acknowledged;
 	}
-	
-	private final boolean _isAcknowledged;
-	
+
+	private final boolean _acknowledged;
+
 }

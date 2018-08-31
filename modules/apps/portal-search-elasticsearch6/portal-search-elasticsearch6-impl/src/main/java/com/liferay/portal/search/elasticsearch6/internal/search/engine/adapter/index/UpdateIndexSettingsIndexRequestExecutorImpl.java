@@ -22,6 +22,7 @@ import org.elasticsearch.action.admin.indices.settings.put.UpdateSettingsAction;
 import org.elasticsearch.action.admin.indices.settings.put.UpdateSettingsRequestBuilder;
 import org.elasticsearch.action.admin.indices.settings.put.UpdateSettingsResponse;
 import org.elasticsearch.client.Client;
+
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
@@ -47,7 +48,7 @@ public class UpdateIndexSettingsIndexRequestExecutorImpl
 
 		return updateIndexSettingsIndexResponse;
 	}
-	
+
 	protected UpdateSettingsRequestBuilder createUpdateSettingsRequestBuilder(
 		UpdateIndexSettingsIndexRequest updateIndexSettingsIndexRequest) {
 
@@ -58,7 +59,7 @@ public class UpdateIndexSettingsIndexRequestExecutorImpl
 
 		updateSettingsRequestBuilder.setIndices(
 			updateIndexSettingsIndexRequest.getIndexNames());
-		
+
 		return updateSettingsRequestBuilder;
 	}
 

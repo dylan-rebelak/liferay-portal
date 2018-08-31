@@ -14,9 +14,12 @@
 
 package com.liferay.portal.search.engine.adapter.index;
 
+import aQute.bnd.annotation.ProviderType;
+
 /**
  * @author Michael C. Han
  */
+@ProviderType
 public class IndicesExistsIndexResponse implements IndexResponse {
 
 	public IndicesExistsIndexResponse(boolean exists) {
@@ -27,6 +30,6 @@ public class IndicesExistsIndexResponse implements IndexResponse {
 		return _exists;
 	}
 
-	private boolean _exists;
-	
+	private final boolean _exists;
+
 }

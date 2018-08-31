@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
@@ -14,8 +14,11 @@
 
 package com.liferay.portal.search.engine.adapter.index;
 
+import aQute.bnd.annotation.ProviderType;
+
 /**
  * @author Michael C. Han
  */
+@ProviderType
 public class UpdateIndexSettingsIndexResponse implements IndexResponse {
 }

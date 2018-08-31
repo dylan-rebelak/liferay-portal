@@ -19,6 +19,7 @@ import com.liferay.portal.search.engine.adapter.index.DeleteIndexRequest;
 import com.liferay.portal.search.engine.adapter.index.DeleteIndexResponse;
 
 import org.elasticsearch.action.admin.indices.delete.DeleteIndexRequestBuilder;
+import org.elasticsearch.action.support.IndicesOptions;
 import org.elasticsearch.client.AdminClient;
 import org.elasticsearch.client.IndicesAdminClient;
 
@@ -46,6 +47,21 @@ public class DeleteIndexRequestExecutorImpl
 		return deleteIndexResponse;
 	}
 
+	protected IndicesOptions convert(
+		com.liferay.portal.search.engine.adapter.index.IndicesOptions
+			indicesOptions) {
+
+		if (indicesOptions == null) {
+			return IndicesOptions.fromOptions(false, true, true, true);
+		}
+
+		return IndicesOptions.fromOptions(
+			indicesOptions.isIgnoreUnavailable(),
+			indicesOptions.isAllowNoIndices(),
+			indicesOptions.isExpandToOpenIndices(),
+			indicesOptions.isExpandToClosedIndices());
+	}
+
 	protected DeleteIndexRequestBuilder createIndexDeleteRequestBuilder(
 		DeleteIndexRequest deleteIndexRequest) {
 
@@ -57,6 +73,11 @@ public class DeleteIndexRequestExecutorImpl
 		DeleteIndexRequestBuilder deleteIndexRequestBuilder =
 			indicesAdminClient.prepareDelete(
 				deleteIndexRequest.getIndexNames());
+
+		IndicesOptions indicesOptions = convert(
+			deleteIndexRequest.getIndicesOptions());
+
+		deleteIndexRequestBuilder.setIndicesOptions(indicesOptions);
 
 		return deleteIndexRequestBuilder;
 	}

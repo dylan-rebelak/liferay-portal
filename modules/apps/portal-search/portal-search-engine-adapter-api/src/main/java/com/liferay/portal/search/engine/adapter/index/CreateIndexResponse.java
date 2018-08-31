@@ -14,8 +14,11 @@
 
 package com.liferay.portal.search.engine.adapter.index;
 
+import aQute.bnd.annotation.ProviderType;
+
 /**
  * @author Michael C. Han
  */
+@ProviderType
 public class CreateIndexResponse implements IndexResponse {
 }
